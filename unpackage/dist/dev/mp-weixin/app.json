@@ -1,0 +1,55 @@
+{
+  "pages": [
+    "pages/home/home",
+    "pages/addressBook/addressBook",
+    "pages/find/find",
+    "pages/my/my",
+    "pages/search/search",
+    "pages/chat/chat",
+    "pages/firendCircle/firendCircle",
+    "pages/businessCard/businessCard",
+    "pages/releaseFirendCircle/releaseFirendCircle",
+    "pages/chooseBgImg/chooseBgImg",
+    "components/u-avatar-cropper/u-avatar-cropper",
+    "pages/builtinBgImg/builtinBgImg",
+    "pages/moreInforMation/moreInforMation"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "wechat",
+    "navigationBarBackgroundColor": "#FFF",
+    "backgroundColor": "#F8F8F8",
+    "backgroundTextStyle": "light",
+    "pageOrientation": "portrait"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "static/image/wechat.png",
+        "selectedIconPath": "static/image/wechat_hl.png",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/find/find",
+        "iconPath": "static/image/wechat.png",
+        "selectedIconPath": "static/image/wechat_hl.png",
+        "text": "消息2"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    },
+    "scope.userLocationBackground": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "usingComponents": {}
+}

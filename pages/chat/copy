@@ -1,0 +1,54 @@
+		<view class="input-box" :class="{ 'input-box-mpInputMargin': mpInputMargin }">
+			<view class="input-box-flex">
+				<!-- #ifndef H5 -->
+				<image v-if="chatType === 'voice'" class="icon_img" :src="require('@/static/voice.png')"
+					@click="switchChatType('keyboard')"></image>
+				<image v-if="chatType === 'keyboard'" class="icon_img" :src="require('@/static/keyboard.png')"
+					@click="switchChatType('voice')"></image>
+				<!-- #endif -->
+				<view class="input-box-flex-grow">
+					<input v-if="chatType === 'voice'" type="text" class="content" id="input" v-model="formData.content"
+						:hold-keyboard="true" :confirm-type="'send'" :confirm-hold="true"
+						placeholder-style="color:#DDDDDD;" :cursor-spacing="10" @confirm="sendMsg(null)" />
+		
+					<view class="voice_title" v-if="chatType === 'keyboard'"
+						:style="{ background: recording ? '#c7c6c6' : '#FFFFFF' }" @touchstart.stop.prevent="startVoice"
+						@touchmove.stop.prevent="moveVoice" @touchend.stop="endVoice" @touchcancel.stop="cancelVoice">
+						{{ voiceTitle }}
+					</view>
+				</view>
+				<!-- 表情按钮 -->
+				<image class="emoji icon_btn_add" :src="require('@/static/face.png')" @tap="emogiFun"></image>
+				<!-- 功能性按钮 -->
+				<image class=" icon_btn_add" :src="require('@/static/add.png')" @tap="switchFun"></image>
+
+				<!-- #ifdef H5 -->
+				<button class="btn" type="primary" size="mini" @touchend.prevent="sendMsg(null)">发送</button>
+				<!-- #endif -->
+			</view>
+
+			<view class="fun-box" :class="{'show-fun-box':showFunBtn}">
+				<u-grid :col="4" hover-class="contentType2-hover-class" :border="false" @click="clickGrid">
+					<u-grid-item v-for="(item, index) in funList" :index="index" :key="index" bg-color="#eaeaea">
+						<u-icon :name="item.icon" :size="52"></u-icon>
+						<view class="grid-text">{{ item.title }}</view>
+					</u-grid-item>
+				</u-grid>
+			</view>
+			<!-- 表情选择 -->
+			<view class="fun-box" :class="{'show-fun-box':emogiBox}">
+				<swiper :current="swiperIndex" style="height: 100%;" @change="swiperChange" :indicator-dots="true">
+					<swiper-item v-for="(items, index) in emojData" :key="index">
+						<view class="emoj-container">
+							<view class="emoj-row">
+								<view class="emoj-parent" v-for="(item, i) in items" :key="i" hover-class="checkActive"
+									hover-stay-time="100" @click="tuchEmoj(item)">
+									<text class="emoj-conn">{{ item }}</text>
+								</view>
+							</view>
+						</view>
+					</swiper-item>
+				</swiper>
+			</view>
+
+		</view>

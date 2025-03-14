@@ -1,0 +1,60 @@
+
+.quick-reply-container.data-v-63a273d0 {
+  display: none;
+  transition: all 0.2s ease-in-out;
+  height: 0;
+}
+.showQuick.data-v-63a273d0 {
+  display: block;
+  height: 500rpx;
+  width: 100%;
+}
+.quick-reply-content.data-v-63a273d0 {
+  display: flex;
+  height: 100%;
+}
+.quick-reply-sidebar.data-v-63a273d0 {
+  width: 30%;
+  background: #efefef;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* 使滚动更平滑 */
+  scrollbar-width: none; /* 隐藏 Firefox 的滚动条 */
+}
+.quick-reply-sidebar.data-v-63a273d0::-webkit-scrollbar {
+  display: none; /* 隐藏 Chrome、Safari 和 Edge 的滚动条 */
+}
+.quick-reply-item.data-v-63a273d0 {
+  padding: 20rpx;
+  cursor: pointer;
+  font-size: 25rpx;
+}
+.quick-reply-item.selected.data-v-63a273d0 {
+  background: #fff;
+  color: #fa973c;
+  border-left: 4rpx solid #fa973c;
+}
+.quick-reply-main.data-v-63a273d0 {
+  width: 70%;
+  padding: 20rpx;
+  overflow-y: auto;
+  background-color: #fff;
+  -webkit-overflow-scrolling: touch; /* 使滚动更平滑 */
+  scrollbar-width: none; /* 隐藏 Firefox 的滚动条 */
+}
+.quick-reply-main.data-v-63a273d0::-webkit-scrollbar {
+  display: none; /* 隐藏 Chrome、Safari 和 Edge 的滚动条 */
+}
+.quick-reply-content-item.data-v-63a273d0 {
+  padding:  20rpx;
+  cursor: pointer;
+  border: 1rpx solid transparent;
+  border-bottom: 1rpx solid #e7e2e2; /* 分割线 */
+  line-height: 40rpx;
+}
+.quick-reply-content-item.selected.data-v-63a273d0 {
+  background: #ffeedd;
+  color: #000;
+  border: 1rpx solid #ff8c19;
+  border-bottom: 1rpx solid #ff8c19; /* 选中时的分割线颜色 */
+}
+
