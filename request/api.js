@@ -29,7 +29,7 @@ export default {
 
     // 快捷词语分类
 	getCateList: {
-		url: '/quickReply/getCateList',
+		url: '/quickReply/getList',
 		auth: true,
 		method: 'POST',
 	},

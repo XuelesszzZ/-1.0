@@ -1,114 +1,114 @@
 
 .kjBox.data-v-63a273d0 {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  padding: 10rpx;
-  display: flex;
-  overflow-x: scroll;
-  -webkit-overflow-scrolling: touch;
-  /* 使滚动更平滑 */
-  scrollbar-width: none;
-  /* 隐藏 Firefox 的滚动条 */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10rpx;
+    display: flex;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+    /* 使滚动更平滑 */
+    scrollbar-width: none;
+    /* 隐藏 Firefox 的滚动条 */
 }
 .quick-reply.data-v-63a273d0 {
-  height: 100%;
-  background-color: #fff;
-  border-radius: 25rpx;
-  /* 设置圆角为矩形圆角 */
-  text-align: center;
-  padding: 12rpx 20rpx;
-  margin-right: 15rpx;
-  font-size: 25rpx;
-  white-space: nowrap;
-  /* 禁止换行 */
-  flex-shrink: 0;
-  border: 1px solid #c9c9c9;
-  /* 默认边框颜色透明 */
-  /* 防止溢出 */
+    height: 100%;
+    background-color: #fff;
+    border-radius: 25rpx;
+    /* 设置圆角为矩形圆角 */
+    text-align: center;
+    padding: 12rpx 20rpx;
+    margin-right: 15rpx;
+    font-size: 25rpx;
+    white-space: nowrap;
+    /* 禁止换行 */
+    flex-shrink: 0;
+    border: 1px solid #c9c9c9;
+    /* 默认边框颜色透明 */
+    /* 防止溢出 */
 }
 .quick-reply.selected.data-v-63a273d0 {
-  border: 1px solid #fa973c;
-  /* 选中时的边框颜色 */
-  color: #fa973c;
-  /* 选中时的字体颜色 */
+    border: 1px solid #fa973c;
+    /* 选中时的边框颜色 */
+    color: #fa973c;
+    /* 选中时的字体颜色 */
 }
 .kjBox.data-v-63a273d0::-webkit-scrollbar {
-  display: none;
-  /* 隐藏 Chrome、Safari 和 Edge 的滚动条 */
+    display: none;
+    /* 隐藏 Chrome、Safari 和 Edge 的滚动条 */
 }
 .allBox.data-v-63a273d0 {
-  display: none;
-  transition: all 0.2s ease-in-out;
-  height: 0;
-  background-color: #fff;
-  z-index: 10000;
+    display: none;
+    transition: all 0.2s ease-in-out;
+    height: 0;
+    background-color: #fff;
+    z-index: 10000;
 }
 .showQuick.data-v-63a273d0 {
-  display: block;
-  height: 600rpx;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+    display: block;
+    height: 600rpx;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .quick-reply-content.data-v-63a273d0 {
-  display: flex;
-  height: 100%;
+    display: flex;
+    height: 100%;
 }
 .quick-reply-container.data-v-63a273d0 {
-  height: 85%;
+    height: 85%;
 }
 .quick-reply-sidebar.data-v-63a273d0 {
-  width: 30%;
-  background: #efefef;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
-  /* 使滚动更平滑 */
-  scrollbar-width: none;
-  /* 隐藏 Firefox 的滚动条 */
+    width: 30%;
+    background: #efefef;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    /* 使滚动更平滑 */
+    scrollbar-width: none;
+    /* 隐藏 Firefox 的滚动条 */
 }
 .quick-reply-sidebar.data-v-63a273d0::-webkit-scrollbar {
-  display: none;
-  /* 隐藏 Chrome、Safari 和 Edge 的滚动条 */
+    display: none;
+    /* 隐藏 Chrome、Safari 和 Edge 的滚动条 */
 }
 .quick-reply-item.data-v-63a273d0 {
-  padding: 20rpx;
-  cursor: pointer;
-  font-size: 25rpx;
+    padding: 20rpx;
+    cursor: pointer;
+    font-size: 25rpx;
 }
 .quick-reply-item.selected.data-v-63a273d0 {
-  background: #fff;
-  color: #fa973c;
-  border-left: 4rpx solid #fa973c;
+    background: #fff;
+    color: #fa973c;
+    border-left: 4rpx solid #fa973c;
 }
 .quick-reply-main.data-v-63a273d0 {
-  width: 70%;
-  padding: 20rpx;
-  overflow-y: auto;
-  background-color: #fff;
-  -webkit-overflow-scrolling: touch;
-  /* 使滚动更平滑 */
-  scrollbar-width: none;
-  /* 隐藏 Firefox 的滚动条 */
+    width: 70%;
+    padding: 20rpx;
+    overflow-y: auto;
+    background-color: #fff;
+    -webkit-overflow-scrolling: touch;
+    /* 使滚动更平滑 */
+    scrollbar-width: none;
+    /* 隐藏 Firefox 的滚动条 */
 }
 .quick-reply-main.data-v-63a273d0::-webkit-scrollbar {
-  display: none;
-  /* 隐藏 Chrome、Safari 和 Edge 的滚动条 */
+    display: none;
+    /* 隐藏 Chrome、Safari 和 Edge 的滚动条 */
 }
 .quick-reply-content-item.data-v-63a273d0 {
-  padding: 20rpx;
-  cursor: pointer;
-  border: 1rpx solid transparent;
-  border-bottom: 1rpx solid #e7e2e2;
-  /* 分割线 */
-  line-height: 40rpx;
+    padding: 20rpx;
+    cursor: pointer;
+    border: 1rpx solid transparent;
+    border-bottom: 1rpx solid #e7e2e2;
+    /* 分割线 */
+    line-height: 40rpx;
 }
 .quick-reply-content-item.selected.data-v-63a273d0 {
-  background: #ffeedd;
-  color: #000;
-  border: 1rpx solid #ff8c19;
-  border-bottom: 1rpx solid #ff8c19;
-  /* 选中时的分割线颜色 */
+    background: #ffeedd;
+    color: #000;
+    border: 1rpx solid #ff8c19;
+    border-bottom: 1rpx solid #ff8c19;
+    /* 选中时的分割线颜色 */
 }
 

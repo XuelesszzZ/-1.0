@@ -148,7 +148,8 @@ exports.default = void 0;
 //
 //
 //
-var _default = {
+//
+var _default2 = {
   props: {
     visible: {
       type: Boolean,
@@ -158,118 +159,54 @@ var _default = {
       type: String,
       default: ''
     },
-    client: {
-      type: String,
-      default: ''
+    commonList: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
     }
   },
   data: function data() {
     return {
-      kjList: ['大大大的', 'DAASDAD', '大大大的', 'DAASDAD', '大大大的', 'DAASDAD'],
       selectedNavIndex: 0,
       selectedQuickReplyIndex: 0,
       // 默认选中第一个
       selectedContentIndex: null,
       // 默认选中第一个
-      navItems: ['处理质量问题', '商品与描述不符', '物流问题', '价格问题', '退货与换货', '推荐与推广', '客户关怀', '提升客户体验'],
-      contentItems: [['亲爱的顾客，非常抱歉给您带来不便。请拍摄一张照片给我，以便我们进行登记和处理。我们会尽快为您解决这个问题，并补偿您的损失。感谢您的理解和配合。'], ['商品与描述不符的处理方案', '亲爱的顾客，非常抱歉给您带来不便。请拍摄一张照片给我，以便我们进行登记和处理。我们会尽快为您解决这个问题，并补偿您的损失。感谢您的理解和配合。', '亲爱的顾客，非常抱歉给您带来不便。请拍摄一张照片给我，以便我们进行登记和处理。我们会尽快为您解决这个问题，并补偿您的损失。感谢您的理解和配合。', '亲爱的顾客，非常抱歉给您带来不便。请拍摄一张照片给我，以便我们进行登记和处理。我们会尽快为您解决这个问题，并补偿您的损失。感谢您的理解和配合。'], ['物流问题的处理方案...'], ['价格问题的处理方案...'], ['退货与换货的处理方案...'], ['推荐与推广的处理方案...'], ['客户关怀的处理方案...'], ['提升客户体验的处理方案...']]
+      selectedQuickReplyItem: this.commonList[0] || {} // 默认选中第一个
     };
   },
+
   watch: {
     visible: function visible(val) {
       if (!val) {
         this.selectedNavIndex = 0;
         this.selectedContentIndex = null; // 重置为第一个
         this.selectedQuickReplyIndex = 0;
+        this.selectedQuickReplyItem = this.commonList[0] || {};
       }
     },
-    client: function client(val) {
-      if (val) {
-        console.log(val);
-        this.getList(val);
-      }
+    commonList: {
+      handler: function handler(val) {
+        this.selectedQuickReplyItem = val[0] || {};
+      },
+      deep: true,
+      immediate: true
+    }
+  },
+  computed: {
+    selectedNavItem: function selectedNavItem() {
+      return this.selectedQuickReplyItem.child_list[this.selectedNavIndex] || {};
     }
   },
   methods: {
-    //获取分类
-    getList: function getList(val) {
-      var _this = this;
-      return new Promise(function (resolve, reject) {
-        _this.$api('getCateList', {
-          client_id: val
-        }).then(function (res) {
-          res = {
-            status: 200,
-            message: "success",
-            data: {
-              list: [{
-                id: 1,
-                pid: 0,
-                name: "售前",
-                child_list: [{
-                  id: 9,
-                  pid: 1,
-                  name: "推销",
-                  child_list: []
-                }]
-              }, {
-                id: 2,
-                pid: 0,
-                name: "售后",
-                child_list: [{
-                  id: 4,
-                  pid: 2,
-                  name: "商品质量",
-                  child_list: []
-                }, {
-                  id: 5,
-                  pid: 2,
-                  name: "描述不符",
-                  child_list: []
-                }, {
-                  id: 6,
-                  pid: 2,
-                  name: "物流",
-                  child_list: []
-                }, {
-                  id: 7,
-                  pid: 2,
-                  name: "退换货",
-                  child_list: []
-                }, {
-                  id: 8,
-                  pid: 2,
-                  name: "回访",
-                  child_list: []
-                }]
-              }, {
-                id: 3,
-                pid: 0,
-                name: "客户关怀",
-                child_list: [{
-                  id: 10,
-                  pid: 3,
-                  name: "节日问候",
-                  child_list: []
-                }]
-              }]
-            }
-          };
-          if (res.status == 200) {
-            _this.kjList = res.data.list;
-          }
-          resolve(true);
-        }).catch(function (e) {
-          resolve(false);
-          // console.log(e);
-        });
-      });
-    },
     handleQuickReplyClick: function handleQuickReplyClick(item, index) {
       if (this.selectedQuickReplyIndex === index) {
         this.selectedQuickReplyIndex = null;
         this.showQuickReply = false;
       } else {
+        this.selectedContentIndex = null;
+        this.selectedNavIndex = 0;
         this.selectedQuickReplyIndex = index;
         this.selectedQuickReplyItem = item;
         this.showQuickReply = true;
@@ -277,13 +214,21 @@ var _default = {
     },
     selectNavItem: function selectNavItem(index) {
       this.selectedNavIndex = index;
+      this.selectedContentIndex = null; // 重置选中的内容项
     },
-    selectContentItem: function selectContentItem(index) {
+    selectContentItem: function selectContentItem(item, index) {
       this.selectedContentIndex = index;
+      this.$emit('dataContent', item.content);
+    },
+    close: function close() {
+      this.selectedNavIndex = 0;
+      this.selectedContentIndex = null; // 重置为第一个
+      this.selectedQuickReplyIndex = 0;
+      this.selectedQuickReplyItem = this.commonList[0] || {};
     }
   }
 };
-exports.default = _default;
+exports.default = _default2;
 
 /***/ }),
 

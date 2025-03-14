@@ -12,7 +12,7 @@
 			</view>
 			<scroll-view class="msg-list" scroll-y="true" :scroll-with-animation="scrollAnimation"
 				:scroll-top="scrollTop" :scroll-into-view="scrollToView" @scrolltoupper="loadHistory"
-				ref="scrollContainer" upper-threshold="50"  @click="scrollBool">
+				ref="scrollContainer" upper-threshold="50" @click="scrollBool">
 				<!-- 加载历史数据waitingUI -->
 				<view class="loading" v-if="isHistoryLoading">
 					<view class="spinner">
@@ -136,7 +136,7 @@
 				<view class="quick-reply" v-for="(item, index) in kjList" :key="index"
 					@click="handleQuickReplyClick(item,index)"
 					:class="{ 'selected': selectedQuickReplyIndex === index }">
-					{{item}}
+					{{item.name}}
 
 				</view>
 			</view>
@@ -202,7 +202,7 @@
 				</view>
 			</view>
 			<!-- 快捷用语入口 -->
-			<QuickReply :visible="showQuickReply" :item="selectedQuickReplyItem" :client ="jkId"/>
+			<QuickReply :visible="showQuickReply" :item="selectedQuickReplyItem"   :commonList = 'commonList'   @dataContent="dataContent" />
 		</view>
 
 		<!-- 订单商品弹出 -->
@@ -243,7 +243,7 @@
 				selectedQuickReplyItem: null,
 				roomType: '',
 				info: {},
-				kjList: ['大大大的', 'DAASDAD', '大大大的', 'DAASDAD', '大大大的', 'DAASDAD'
+				kjList: [
 				],
 				isHistoryLoading: false,
 				scrollAnimation: false,
@@ -319,6 +319,7 @@
 				mpInputMargin: false, //适配微信小程序 底部输入框高度被顶起的问题
 				chatType: "voice", // 图标类型 'voice'语音 'keyboard'键盘
 				voiceTitle: '按住 说话',
+				commonList: [],
 				Recorder: uni.getRecorderManager(),
 				Audio: uni.createInnerAudioContext(),
 				recording: false, //标识是否正在录音
@@ -366,29 +367,62 @@
 		},
 		watch: {
 			// 取消选中
-            showQuickReply(val) {
-                if (!val) {
+			showQuickReply(val) {
+				if (!val) {
 					this.selectedQuickReplyIndex = null;
-                }
-            },
-        },
+				}
+			},
+		},
 		methods: {
-			scrollBool(){
+			//获取传递的文字
+			dataContent(data){
+          console.log(data);
+		  
+			},
+			//获取分类
+			getList(val) {
+				console.log(val);
+
+				return new Promise((resolve, reject) => {
+					this.$api('getCateList', {
+						client_id: val
+					}).then(res => {
+						if (res.status == 200) {
+							this.kjList = res.data.common_list
+							this.commonList = res.data.cate_list
+							console.log(this.commonList );
+							
+						}
+						resolve(true);
+					}).catch((e) => {
+						resolve(false);
+						// console.log(e);
+					});
+				})
+			},
+			scrollBool() {
 				this.showQuickReply = false;
-			
+
 			},
 			handleQuickReplyClick(item, index) {
 				this.emogiBox = false;
 				this.showFunBtn = false;
 				this.scrollToView = 'msg-0';
-				if (this.selectedQuickReplyIndex === index) {
-					this.selectedQuickReplyIndex = null;
-					this.showQuickReply = false;
+				if (index === 0) {
+					if (this.selectedQuickReplyIndex === index) {
+						this.selectedQuickReplyIndex = null;
+
+						this.showQuickReply = false;
+					} else {
+						this.selectedQuickReplyIndex = index;
+						this.selectedQuickReplyItem = item;
+						this.showQuickReply = true;
+					}
 				} else {
-					this.selectedQuickReplyIndex = index;
-					this.selectedQuickReplyItem = item;
-					this.showQuickReply = true;
-	
+
+					this.formData.content = item.content;
+
+					this.selectedQuickReplyIndex = null; // 点击其他项时不高亮
 				}
 			},
 			del() {
@@ -483,11 +517,12 @@
 				this.ws.on('message', (res) => {
 					console.log(res);
 					if (res.type == 'onConnect') {
-						if (res.data.client_id) {
-							this.jkId = res.data.client_id
-							this.gethistoryList(this.jkId)
-						}
+
+						this.jkId = res.data.client_id
+						this.gethistoryList(this.jkId)
+
 					}
+
 					if (res.type == 'login') {
 						this.messageList = res.data.list
 						this.info = res.data.sender_info
@@ -1006,7 +1041,7 @@
 		},
 		onLoad(info) {
 
-	
+
 			this.$nextTick(function () {
 				//进入页面滚动到底部
 				this.scrollTop = 99999999999
@@ -1029,7 +1064,7 @@
 				shop_id: null,
 				room_type: infoData.room_type,
 				type: "login",
-				token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzQ4ODUsImV4cCI6MTc0MzY2Njg4NSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJ1c2VyIiwidXNlcl9pZCI6NDd9fQ.Ave2qlEte478fxGKlAD_Zbicmx-o27HG3LEnhHVoRLk"
+				token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEzMzQ1MTUsImV4cCI6MTc0MzkyNjUxNSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJhZG1pbiIsImFkbWluX3VpZCI6MX19.fZwFbBkcbc4yv_FiGM6kSZ97L9eBNzFt7cAZZ-NR7H8"
 			}
 			this.hosType = infoData.room_type
 			if (infoData.room_type === 1 || infoData.room_type === 2 || infoData.room_type === 3) {
@@ -1043,6 +1078,9 @@
 			this.infoData = infoData; // 赋值 infoData
 
 			this.init(params)
+			this.$nextTick(() => {
+				this.getList(this.jkId)
+			})
 
 
 
