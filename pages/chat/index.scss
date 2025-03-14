@@ -94,8 +94,9 @@ page {
 
 		// padding-bottom: calc(420rpx + env(safe-area-inset-bottom));
 	}
-	.showQuickReply-active{
-		height: calc(100vh - env(safe-area-inset-top) - 699rpx);
+
+	.showQuickReply-active {
+		height: calc(100vh - env(safe-area-inset-top) - 799rpx);
 	}
 
 
@@ -122,6 +123,7 @@ page {
 		flex-direction: column;
 		background-color: rgba(239, 239, 239, 1);
 
+
 		.msg-list {
 			width: 100%;
 			flex: 1;
@@ -138,8 +140,10 @@ page {
 			padding: 10rpx;
 			display: flex;
 			overflow-x: scroll;
-			-webkit-overflow-scrolling: touch; /* 使滚动更平滑 */
-			scrollbar-width: none; /* 隐藏 Firefox 的滚动条 */
+			-webkit-overflow-scrolling: touch;
+			/* 使滚动更平滑 */
+			scrollbar-width: none;
+			/* 隐藏 Firefox 的滚动条 */
 
 			.quick-reply {
 				height: 100%;
@@ -153,17 +157,24 @@ page {
 				white-space: nowrap;
 				/* 禁止换行 */
 				flex-shrink: 0;
-				border: 1px solid transparent; /* 默认边框颜色透明 */
+				border: 1px solid transparent;
+
+				/* 默认边框颜色透明 */
 				/* 防止溢出 */
 				&.selected {
-					border:1px solid #FA973C; /* 选中时的边框颜色 */
-					color: #FA973C; /* 选中时的字体颜色 */
+					border: 1px solid #FA973C;
+					/* 选中时的边框颜色 */
+					color: #FA973C;
+					/* 选中时的字体颜色 */
 				}
 			}
 		}
+
 		.kjBox::-webkit-scrollbar {
-			display: none; /* 隐藏 Chrome、Safari 和 Edge 的滚动条 */
+			display: none;
+			/* 隐藏 Chrome、Safari 和 Edge 的滚动条 */
 		}
+
 		/* #ifdef APP-PLUS  */
 		margin-bottom: 0rpx;
 		margin-bottom: constant(safe-area-inset-bottom);
@@ -518,6 +529,7 @@ page {
 					word-break: break-all;
 					line-height: 36rpx;
 					position: relative;
+					color: #fff;
 
 					// &::after {
 					// 	content: '';
@@ -614,7 +626,7 @@ page {
 		}
 
 		.fun-box {
-		   display: none;
+			display: none;
 			transition: all 0.2s ease-in-out;
 			height: 0;
 
@@ -629,16 +641,18 @@ page {
 			display: block;
 			height: 300rpx;
 			position: relative;
-			.buttonBox{
+
+			.buttonBox {
 				position: absolute;
 				right: 30rpx;
-				bottom:0rpx;
+				bottom: 0rpx;
 				display: flex;
 				align-items: center;
-				 .firstBut{
+
+				.firstBut {
 					margin-right: 10rpx;
-				 }
-			 }
+				}
+			}
 		}
 	}
 

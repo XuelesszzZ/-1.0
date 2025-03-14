@@ -115,7 +115,7 @@ page.data-v-bf16e7f4 {
   height: calc(100vh - env(safe-area-inset-top) - 499rpx);
 }
 .content .showQuickReply-active.data-v-bf16e7f4 {
-  height: calc(100vh - env(safe-area-inset-top) - 699rpx);
+  height: calc(100vh - env(safe-area-inset-top) - 799rpx);
 }
 .content .serviceReminder.data-v-bf16e7f4 {
   width: 100%;
@@ -459,6 +459,7 @@ page.data-v-bf16e7f4 {
   word-break: break-all;
   line-height: 36rpx;
   position: relative;
+  color: #fff;
 }
 .content .input-box.data-v-bf16e7f4 {
   position: fixed;

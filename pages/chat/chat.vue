@@ -202,7 +202,7 @@
 				</view>
 			</view>
 			<!-- 快捷用语入口 -->
-			<QuickReply :visible="showQuickReply" :item="selectedQuickReplyItem" />
+			<QuickReply :visible="showQuickReply" :item="selectedQuickReplyItem" :client ="jkId"/>
 		</view>
 
 		<!-- 订单商品弹出 -->
@@ -1006,7 +1006,7 @@
 		},
 		onLoad(info) {
 
-
+	
 			this.$nextTick(function () {
 				//进入页面滚动到底部
 				this.scrollTop = 99999999999

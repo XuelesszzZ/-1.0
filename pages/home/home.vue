@@ -131,10 +131,10 @@
 				this.ws.on('error', (err) => console.error('WebSocket 发生错误:', err));
 				this.ws.on('message', (data) => {
 
-					// this.list = this.convertTimestampsToDates(data.data.list);
-					// this.list = JSON.parse((JSON.stringify(this.list)))
+					this.list = this.convertTimestampsToDates(data.data.list);
+					this.list = JSON.parse((JSON.stringify(this.list)))
 
-					console.log(this.list);
+	
 
 
 				});

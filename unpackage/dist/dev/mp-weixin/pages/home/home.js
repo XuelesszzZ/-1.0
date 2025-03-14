@@ -277,10 +277,8 @@ var _default = {
         return console.error('WebSocket 发生错误:', err);
       });
       this.ws.on('message', function (data) {
-        // this.list = this.convertTimestampsToDates(data.data.list);
-        // this.list = JSON.parse((JSON.stringify(this.list)))
-
-        console.log(_this2.list);
+        _this2.list = _this2.convertTimestampsToDates(data.data.list);
+        _this2.list = JSON.parse(JSON.stringify(_this2.list));
       });
     },
     // 转换函数
