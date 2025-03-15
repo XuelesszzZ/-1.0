@@ -152,10 +152,11 @@
                     @click="switchChatType('voice')"></image>
                 <!-- #endif -->
                 <view class="input-box-flex-grow">
-                    <input v-if="chatType === 'voice'" type="text" class="content" id="input" v-model="formData.content"
+                    <!-- <input v-if="chatType === 'voice'" type="text" class="content" id="input" v-model="formData.content"
                         :hold-keyboard="true" :confirm-type="'send'" :confirm-hold="true"
                         placeholder-style="color:#DDDDDD;" :cursor-spacing="10" @input="handleInput"
-                        @confirm="sendMsg(null)" />
+                        @confirm="sendMsg(null)" /> -->
+                        <u-input v-model="value" type="textarea" border="true" height="100" auto-height="true" />
 
                     <view class="voice_title" v-if="chatType === 'keyboard'"
                         :style="{ background: recording ? '#c7c6c6' : '#FFFFFF' }" @touchstart.stop.prevent="startVoice"
