@@ -18,7 +18,7 @@
                 <div class="quick-reply-main">
                     <div class="quick-reply-content-item" v-for="(content, index) in selectedNavItem.reply_list"
                         :key="index" :class="{ selected: selectedContentIndex === index }"
-                        @click="selectContentItem(item,index)">
+                        @click="selectContentItem(content,index)">
                         <p>{{ content.content }}</p>
                     </div>
                 </div>
@@ -94,6 +94,7 @@
             },
             selectContentItem(item, index) {
                 this.selectedContentIndex = index;
+                
                 this.$emit('dataContent', item.content);
             },
             close() {

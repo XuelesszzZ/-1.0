@@ -33,7 +33,12 @@ export default {
 		auth: true,
 		method: 'POST',
 	},
-	
+	//模糊搜索
+	autoComplete: {
+		url: '/quickReply/autoComplete',
+		auth: true,
+		method: 'POST',
+	},
 
 
 };
