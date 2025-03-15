@@ -1,0 +1,27 @@
+
+.autocomplete-container.data-v-67fcbee3 {
+  position: absolute;
+  bottom: 170rpx;
+  left: 20rpx;
+  width: 80%;
+  max-height: 500rpx; /* 固定高度 */
+  overflow-y: auto; /* 允许下滑 */
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 20rpx;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10000;
+  padding: 20rpx;
+}
+.autocomplete-item.data-v-67fcbee3 {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #e0e0e0; /* 分割线 */
+}
+.autocomplete-item.data-v-67fcbee3:last-child {
+  border-bottom: none; /* 最后一个项不需要分割线 */
+}
+.autocomplete-item.data-v-67fcbee3:hover {
+  background: #f0f0f0;
+}
+
