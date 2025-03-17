@@ -315,6 +315,7 @@ var _default = {
     },
     //跳转
     linkTo: function linkTo(item, index) {
+      console.log(item);
       this.list[index].show = false;
       var data = JSON.stringify(item);
       this.$u.route({

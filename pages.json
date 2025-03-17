@@ -22,34 +22,41 @@
 				// #endif
 				"app-plus": {
 					"titleNView": {
-						"buttons": [{
-							"fontSrc": "/static/iconfont/iconfont.ttf",
-							"float": "right",
-							"text": "\ue9c9"
-						}]
+						"buttons": [
+							{
+								"fontSrc": "/static/iconfont/iconfont.ttf",
+								"float": "right",
+								"text": "\ue9c9"
+							}
+						]
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/addressBook/addressBook",
 			"style": {
 				"navigationBarTitleText": "通讯录",
 				"app-plus": {
 					"titleNView": {
-						"buttons": [{
-							"fontSrc": "/static/iconfont/iconfont.ttf",
-							"float": "right",
-							"text": "\ue786"
-						}]
+						"buttons": [
+							{
+								"fontSrc": "/static/iconfont/iconfont.ttf",
+								"float": "right",
+								"text": "\ue786"
+							}
+						]
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/find/find",
 			"style": {
 				"navigationBarTitleText": "发现"
 			}
-		}, {
+		},
+		{
 			"path": "pages/my/my",
 			"style": {
 				"navigationBarTitleText": " ",
@@ -58,7 +65,8 @@
 					"titleView": false
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/search/search",
 			"style": {
 				"navigationBarTitleText": "",
@@ -69,31 +77,34 @@
 					"animationDuration": 300
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/chat/chat",
 			"style": {
 				"app-plus": {
-					"softinputNavBar": "none",
 					"softinputMode": "adjustPan",
+					"softinputNavBar": "none",
 					"titleNView": {
-						"autoBackButton":false,
-						"buttons": [{
-							"fontSrc": "/static/iconfont/iconfont.ttf",
-							"float": "right",
-							"text": "\ue626"
-						}
-						, {
-							"fontSrc": "/static/iconfont/iconfont.ttf",
-							"float": "left",
-							"text": "\ue6f2",
-							"color": "#303133",
-							"background": "rgba(255,255,255,0)"
-						}
+						"autoBackButton": false,
+						"buttons": [
+							{
+								"fontSrc": "/static/iconfont/iconfont.ttf",
+								"float": "right",
+								"text": "\ue626"
+							},
+							{
+								"fontSrc": "/static/iconfont/iconfont.ttf",
+								"float": "left",
+								"text": "\ue6f2",
+								"color": "#303133",
+								"background": "rgba(255,255,255,0)"
+							}
 						]
 					}
 				}
 			}
-		}, {
+		},
+		{
 			"path": "pages/firendCircle/firendCircle",
 			"style": {
 				"navigationBarTitleText": " ",
@@ -105,15 +116,16 @@
 				"app-plus": {
 					"titleNView": {
 						"type": "transparent",
-						"backgroundColor":"#f8f9f9",
-						"coverage":"45%", //h5不起作用
+						"backgroundColor": "#f8f9f9",
+						"coverage": "45%", //h5不起作用
 						// #ifdef APP-PLUS
 						"backButton": {
 							"color": "#303133",
 							"background": "rgba(255,255,255,0)"
 						},
 						// #endif
-						"buttons": [{
+						"buttons": [
+							{
 								"fontSrc": "/static/iconfont/iconfont.ttf",
 								"float": "right",
 								"text": "\ue609",
@@ -121,7 +133,8 @@
 								"background": "rgba(255,255,255,0)"
 							}
 							// #ifdef H5
-							, {
+							,
+							{
 								"fontSrc": "/static/iconfont/iconfont.ttf",
 								"float": "left",
 								"text": "\ue6f2",
@@ -133,43 +146,45 @@
 					}
 				}
 			}
-		}
-	    ,{
-            "path" : "pages/businessCard/businessCard",
-            "style" : {
+		},
+		{
+			"path": "pages/businessCard/businessCard",
+			"style": {
 				"navigationBarTitleText": "",
 				"app-plus": {
 					"titleNView": {
-						"backgroundColor":"#FFFFFF"
+						"backgroundColor": "#FFFFFF"
 					}
 				}
 			}
-        }
-        ,{
-            "path" : "pages/releaseFirendCircle/releaseFirendCircle",
-            "style" : {
+		},
+		{
+			"path": "pages/releaseFirendCircle/releaseFirendCircle",
+			"style": {
 				"navigationBarTitleText": "",
 				// #ifdef MP-WEIXIN
 				"navigationStyle": "custom",
 				// #endif
 				"app-plus": {
 					"titleNView": {
-						"buttons": [{
-							"float": "right",
-							"text": "发表",
-							"color":"#18b566",
-							"fontSize":"16"
-						}]
+						"buttons": [
+							{
+								"float": "right",
+								"text": "发表",
+								"color": "#18b566",
+								"fontSize": "16"
+							}
+						]
 					}
 				}
 			}
-        }
-        ,{
-            "path" : "pages/chooseBgImg/chooseBgImg",
-            "style" : {
+		},
+		{
+			"path": "pages/chooseBgImg/chooseBgImg",
+			"style": {
 				"navigationBarTitleText": "选择背景图"
 			}
-        },
+		},
 		{
 			"path": "components/u-avatar-cropper/u-avatar-cropper",
 			"style": {
@@ -178,59 +193,61 @@
 			}
 		},
 		{
-            "path" : "pages/builtinBgImg/builtinBgImg",
-            "style" : {
+			"path": "pages/builtinBgImg/builtinBgImg",
+			"style": {
 				"navigationBarTitleText": "选择背景图",
 				// #ifdef MP-WEIXIN
 				"navigationStyle": "custom",
 				// #endif
 				"app-plus": {
 					"titleNView": {
-						"buttons": [{
-							"float": "right",
-							"text": "完成",
-							"color":"#18b566",
-							"fontSize":"16"
-						}]
+						"buttons": [
+							{
+								"float": "right",
+								"text": "完成",
+								"color": "#18b566",
+								"fontSize": "16"
+							}
+						]
 					}
 				}
 			}
-        }
-        ,{
-            "path" : "pages/moreInforMation/moreInforMation",
-            "style" : {
+		},
+		{
+			"path": "pages/moreInforMation/moreInforMation",
+			"style": {
 				"navigationBarTitleText": "更多信息"
 			}
-        }
-    ],
+		}
+	],
 	"tabBar": {
 		"color": "#7A7E83",
 		"selectedColor": "#3cc51f",
 		"borderStyle": "black",
 		"backgroundColor": "#ffffff",
-		"list": [{
-			"pagePath": "pages/home/home",
-			"iconPath": "static/image/wechat.png",
-			"selectedIconPath": "static/image/wechat_hl.png",
-			"text": "消息"
-		},
-		{
-			"pagePath": "pages/find/find",
-			"iconPath": "static/image/wechat.png",
-			"selectedIconPath": "static/image/wechat_hl.png",
-			"text": "消息2"
-		}
-		
-		// 	"pagePath": "pages/find/find",
-		// 	"iconPath": "static/image/find.png",
-		// 	"selectedIconPath": "static/image/find_hl.png",
-		// 	"text": "发现"
-		// }, {
-		// 	"pagePath": "pages/my/my",
-		// 	"iconPath": "static/image/my.png",
-		// 	"selectedIconPath": "static/image/my_hl.png",
-		// 	"text": "我"
-		// },
+		"list": [
+			{
+				"pagePath": "pages/home/home",
+				"iconPath": "static/image/wechat.png",
+				"selectedIconPath": "static/image/wechat_hl.png",
+				"text": "消息"
+			},
+			{
+				"pagePath": "pages/find/find",
+				"iconPath": "static/image/wechat.png",
+				"selectedIconPath": "static/image/wechat_hl.png",
+				"text": "消息2"
+			}
+			// 	"pagePath": "pages/find/find",
+			// 	"iconPath": "static/image/find.png",
+			// 	"selectedIconPath": "static/image/find_hl.png",
+			// 	"text": "发现"
+			// }, {
+			// 	"pagePath": "pages/my/my",
+			// 	"iconPath": "static/image/my.png",
+			// 	"selectedIconPath": "static/image/my_hl.png",
+			// 	"text": "我"
+			// },
 		]
 	},
 	"globalStyle": {
@@ -238,18 +255,20 @@
 		"navigationBarTitleText": "wechat",
 		"navigationBarBackgroundColor": "#FFF",
 		"backgroundColor": "#F8F8F8",
-		"backgroundTextStyle":"light",
-		"pageOrientation":"portrait",
+		"backgroundTextStyle": "light",
+		"pageOrientation": "portrait",
 		"app-plus": {
 			"bounce": "none"
 		}
 	},
 	"condition": { //模式配置，仅开发期间生效
 		"current": 0, //当前激活的模式(list 的索引项)
-		"list": [{
-			"name": "", //模式名称
-			"path": "", //启动页面，必选
-			"query": "" //启动参数，在页面的onLoad函数里面得到
-		}]
+		"list": [
+			{
+				"name": "", //模式名称
+				"path": "", //启动页面，必选
+				"query": "" //启动参数，在页面的onLoad函数里面得到
+			}
+		]
 	}
 }

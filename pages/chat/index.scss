@@ -2,7 +2,9 @@ page {
 	background-color: #f3f3f3;
 }
 
-
+:root {
+    --safe-area-inset-bottom: env(safe-area-inset-bottom);
+}
 
 .loading {
 	//loading动画
@@ -88,7 +90,9 @@ page {
 }
 
 .content {
-
+        height: calc(100vh - env(safe-area-inset-bottom));
+		display: flex;
+		flex-direction: column;
 	.emoji-active {
 		height: calc(100vh - env(safe-area-inset-top) - 499rpx);
 
@@ -118,12 +122,15 @@ page {
 
 	&-box {
 		width: 100%;
-		height: calc(100vh - 195rpx);
+		// height: calc(100vh - 195rpx);
+		flex: 1;
 		box-sizing: content-box;
 		display: flex;
 		flex-direction: column;
+		justify-content: space-between;
 		background-color: rgba(239, 239, 239, 1);
-
+		padding-bottom: 0 !important;
+         overflow: hidden;
 
 		.msg-list {
 			width: 100%;
@@ -131,6 +138,12 @@ page {
 			overflow-y: scroll;
 			/* 确保 msg-list 可以滚动 */
 			padding-bottom: 20rpx;
+			  .timeBox{
+				text-align: center;
+				margin: 20rpx 0;
+				font-size: 20rpx;
+				color: #999;
+			  }
 		}
 
 		.kjBox {
@@ -224,7 +237,7 @@ page {
 				border-radius: 5rpx;
 			}
 
-			.content {
+			.contentText {
 				padding: 20rpx;
 				max-width: 500rpx;
 				border-radius: 10rpx;
@@ -501,7 +514,7 @@ page {
 			&.right {
 				flex-direction: row-reverse;
 
-				.content {
+				.contentText {
 					background-color: #fff;
 					margin-right: 10rpx;
 					word-break: break-all;
@@ -524,7 +537,7 @@ page {
 			}
 
 			&.left {
-				.content {
+				.contentText {
 					background-color: #FA973C;
 					margin-left: 10rpx;
 					word-break: break-all;
@@ -557,7 +570,7 @@ page {
 		box-sizing: content-box;
 		z-index: 999;
 		background-color: #eaeaea;
-		// height: 130rpx;
+
 
 		// /* #ifdef APP-PLUS */
 		// margin-bottom: 0rpx;
@@ -565,8 +578,8 @@ page {
 		// margin-bottom: env(safe-area-inset-bottom);
 		// /* #endif */
 		/* #ifdef MP-WEIXIN */
-		padding-bottom: 0rpx;
-		padding-bottom: constant(safe-area-inset-bottom);
+
+
 		padding-bottom: env(safe-area-inset-bottom);
 		/* #endif */
 
@@ -601,13 +614,20 @@ page {
 				flex-grow: 1;
 
 				.content {
-					box-sizing: border-box;
+				
 					background-color: #fff;
-					height: 80rpx;
-					padding: 0 20rpx;
+					// height: 80rpx;
 					border-radius: 12rpx;
-					font-size: 28rpx;
-					caret-color: $uni-color-success;
+		            width: 95%;
+				   padding: 6rpx  
+				// box-sizing: border-box;
+				// background-color: #fff;
+				// // height: 60rpx	!important;
+				// padding: 0 20rpx;
+				// border-radius: 12rpx;
+				// font-size: 28rpx;
+	 
+			
 				}
 
 				.voice_title {
@@ -662,7 +682,16 @@ page {
 		padding-bottom: 0rpx;
 		/* #endif */
 	}
+    .footer-placeholder{
+				// /* #ifdef MP-WEIXIN */
 
+
+				// padding-bottom: env(safe-area-inset-bottom);
+				// /* #endif */
+				// position: static;
+				// bottom: 0;
+				// left: 0;
+	}
 	.voice_an {
 		width: 300rpx;
 		height: 300rpx;

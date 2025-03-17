@@ -5,9 +5,9 @@
             <!-- 背景图- 定位方式 -->
             <!-- 	<image class="content-box-bg" :src="_user_info.chatBgImg" :style="{ height: imgHeight }"></image> -->
             <view class="serviceReminder">
-                <u-avatar :src="infoData.headimgurl" size="80"></u-avatar>
+                <u-avatar :src="infoData.headimgurl" size="70"></u-avatar>
                 <view class="minderText">
-                    {{infoData.title}},前来服务~
+                    {{infoData.title?infoData.title:'系统客服'}},前来服务~
                 </view>
             </view>
             <scroll-view class="msg-list" scroll-y="true" :scroll-with-animation="scrollAnimation"
@@ -25,13 +25,16 @@
                 </view>
                 <view class="message" v-for="(item, index) in messageList" :key="index"
                     :id="`msg-${item.hasBeenSentId}`">
-
+                    <view class="timeBox" v-if="item.create_time">
+                        {{item.create_time}}
+                    </view>
                     <view class="message-item " :class="item.is_me ? 'right' : 'left'">
 
                         <!-- contentType = 1 文本 -->
-                        <view class="content" v-if="item.content_type == 1">{{ item.content }}</view>
+                        <view class="contentText" v-if="item.content_type == 1">{{ item.content }}</view>
                         <!-- contentType = 2 图片 -->
-                        <view class="content contentType3" v-if="item.content_type == 2" @tap="viewImg([item.path])">
+                        <view class="contentText contentType3" v-if="item.content_type == 2"
+                            @tap="viewImg([item.path])">
                             <image :src="item.path" class="img" mode="widthFix"></image>
                         </view>
                         <!-- contentType = 3 视频 -->
@@ -132,7 +135,7 @@
                     </view>
                 </view>
             </scroll-view>
-            <view class="kjBox">
+            <view class="kjBox" v-if="kjList.length > 0">
                 <view class="quick-reply" v-for="(item, index) in kjList" :key="index"
                     @click="handleQuickReplyClick(item,index)"
                     :class="{ 'selected': selectedQuickReplyIndex === index }">
@@ -143,7 +146,8 @@
         </view>
 
         <!-- 底部聊天输入框 -->
-        <view class="input-box" :class="{ 'input-box-mpInputMargin': mpInputMargin }">
+        <view class="input-box" :class="{ 'input-box-mpInputMargin': mpInputMargin }" ref="footerRef"
+            @touchmove.stop.prevent>
             <view class="input-box-flex">
                 <!-- #ifndef H5 -->
                 <image v-if="chatType === 'voice'" class="icon_img" :src="require('@/static/voice.png')"
@@ -152,11 +156,15 @@
                     @click="switchChatType('voice')"></image>
                 <!-- #endif -->
                 <view class="input-box-flex-grow">
-                    <!-- <input v-if="chatType === 'voice'" type="text" class="content" id="input" v-model="formData.content"
-                        :hold-keyboard="true" :confirm-type="'send'" :confirm-hold="true"
-                        placeholder-style="color:#DDDDDD;" :cursor-spacing="10" @input="handleInput"
-                        @confirm="sendMsg(null)" /> -->
-                        <u-input v-model="value" type="textarea" border="true" height="100" auto-height="true" />
+                    <textarea v-if="chatType === 'voice'" type="text" class="content" id="input"
+                        v-model="formData.content" :hold-keyboard="true" :confirm-type="'send'" :confirm-hold="true"
+                        auto-height="true" placeholder-style="color:#DDDDDD;" :cursor-spacing="10" @input="handleInput"
+                        @confirm="sendMsg(null)" ref="input" :show-confirm-bar='false' confirm-type="done" />
+                    <!-- <textarea v-model="formData.content" v-if="chatType === 'voice'" id="input" 
+                        border="true"  auto-height="true" clearable="false" :cursor-spacing="10"
+                        adjust-position="true" @input="handleInput" @confirm="sendMsg(null)"
+                        :hold-keyboard="true" :confirm-hold="true" class="content" /> -->
+
 
                     <view class="voice_title" v-if="chatType === 'keyboard'"
                         :style="{ background: recording ? '#c7c6c6' : '#FFFFFF' }" @touchstart.stop.prevent="startVoice"
@@ -208,7 +216,9 @@
             <QuickReply :visible="showQuickReply" :item="selectedQuickReplyItem" :commonList='commonList'
                 @dataContent="dataContent" />
         </view>
-
+        <!-- 占位元素（同步动态高度） -->
+        <div class="footer-placeholder" :style="{ height: dynamicFooterHeight + 'rpx' }"></div>
+        </div>
         <AutoComplete :visible="showAutoComplete" :query="formData.content" @select="handleSelectSuggestion"
             @close="handleCloseAutoComplete" :comPleteLikst="comPleteLikst" />
 
@@ -243,17 +253,24 @@
     import customer from '@/components/customer.vue'
     import QuickReply from '@/components/QuickReply.vue';
     import AutoComplete from '@/components/AutoComplete.vue';
+    import {
+        formatTime
+    } from '@/filter/index.js'
 
     export default {
         data() {
             return {
+
+
                 showAutoComplete: false,
                 showQuickReply: false,
                 selectedQuickReplyItem: null,
                 roomType: '',
                 info: {},
+
                 kjList: [
                 ],
+
                 isHistoryLoading: false,
                 scrollAnimation: false,
                 scrollTop: 0,
@@ -301,6 +318,7 @@
                     ]
                 ],
                 swiperIndex: 0, // 初始 swiper 索引
+                csHeiht: null,
                 selectedEmoji: null, // 用于保存用户选择的表情
                 msgImgList: [],
                 historyList: [],
@@ -322,6 +340,7 @@
                 popTile: '',
                 jkId: '',
                 infoLeft: {},
+                safeAreaInsetBottom: null,
                 loading: true, //标识是否正在获取数据
                 imgHeight: '1000px',
                 mpInputMargin: false, //适配微信小程序 底部输入框高度被顶起的问题
@@ -368,6 +387,8 @@
                 }
                 ],
                 infoData: {}, // 初始化 infoData
+                dynamicFooterHeight: 0, // 初始高度
+
             };
         },
         components: {
@@ -383,9 +404,79 @@
                     this.selectedQuickReplyIndex = null;
                 }
             },
+            'formData.content': function (newVal, oldVal) {
+                this.updateFooterHeight();
+            },
+            showQuickReply(val) {
+
+                if (!val) {
+                    this.updateFooterHeight()
+
+                }
+
+            },
+            emogiBox(val) {
+                if (!val) {
+                    this.updateFooterHeight()
+
+                }
+            },
+            showFunBtn(val) {
+                if (!val) {
+                    this.updateFooterHeight()
+
+                }
+            }
+            // 其他监听器...
+        },
+
+        mounted() {
+
+
         },
         methods: {
+            // 转换函数
+            convertTimestampsToDates(dataArray, key = 'create_time') {
+
+
+                return dataArray.map(item => {
+
+                    return {
+                        ...item,
+                        [key]: formatTime(item[key]), // 转换时间戳
+                    };
+                });
+            },
+
+            updateFooterHeight(num) {
+                // 使用 UniApp API 获取节点高度
+                this.$nextTick(() => {
+                    const query = uni.createSelectorQuery().in(this);
+                    query.select('.input-box-flex').boundingClientRect(res => {
+                        if (res) {
+                            let heightInPx = res.height;
+                            let heightInRpx = this.px2rpx(heightInPx);
+                            if (num) {
+                                this.dynamicFooterHeight = heightInRpx + num;
+                            } else {
+                                this.dynamicFooterHeight = heightInRpx;
+                            }
+
+
+                        }
+                    }).exec();
+                });
+            },
+            // 转换px
+            px2rpx(px) {
+                const screenWidth = uni.getSystemInfoSync().screenWidth;
+                return (750 / screenWidth) * px;
+            },
             handleInput(e) {
+
+
+
+
                 if (this.throttleTimeout) {
                     clearTimeout(this.throttleTimeout);
                 }
@@ -411,7 +502,7 @@
                         keywords: content
                     }).then(res => {
                         if (res.status == 200) {
-                            console.log(res.data);
+
                             if (res.data) {
                                 this.showAutoComplete = true
                                 this.comPleteLikst = res.data.list
@@ -429,8 +520,16 @@
                 })
             },
             handleSelectSuggestion(item) {
+
+
                 this.formData.content = item;
                 this.showAutoComplete = false;
+                this.$nextTick(() => {
+                    this.updateFooterHeight();
+                    // 或通过事件触发
+
+                });
+
             },
             handleCloseAutoComplete() {
                 this.showAutoComplete = false;
@@ -464,9 +563,13 @@
             },
             scrollBool() {
                 this.showQuickReply = false;
+                this.showFunBtn = false
+                this.emogiBox = false
+                uni.hideKeyboard()
 
             },
             handleQuickReplyClick(item, index) {
+                this.updateFooterHeight(600);
                 this.emogiBox = false;
                 this.showFunBtn = false;
                 this.scrollToView = 'msg-0';
@@ -496,7 +599,7 @@
             },
             //触发滑动到顶部(加载历史信息记录)
             loadHistory(e) {
-                console.log(e)
+
                 if (this.isHistoryLoading) {
                     return;
                 }
@@ -507,7 +610,6 @@
                 setTimeout(() => {
                     // 消息列表
 
-                    console.log(this.historyList);
                     // 获取消息中的图片,并处理显示尺寸
                     for (let i = 0; i < this.historyList.length; i++) {
 
@@ -578,15 +680,21 @@
                 this.ws.on('error', (err) => console.error('发生错误:', err));
                 this.ws.on('message', (res) => {
                     console.log(res);
+
                     if (res.type == 'onConnect') {
 
                         this.jkId = res.data.client_id
                         this.gethistoryList(this.jkId)
 
                     }
-
+                    if (res.type == 'dialog') {
+                        res.data.is_me = false
+                        this.messageList.push(res.data)
+                        this.scrollToView = 'msg-0';
+                    }
                     if (res.type == 'login') {
-                        this.messageList = res.data.list
+
+                        this.messageList = this.convertTimestampsToDates(res.data.list);
                         this.info = res.data.sender_info
 
                         this.messageList.map(
@@ -606,15 +714,7 @@
 
                     }
 
-                    this.$nextTick(function () {
-                        //进入页面滚动到底部
-                        this.scrollTop = 99999999999
-                        this.$nextTick(function () {
-                            this.scrollAnimation = true;
 
-                        });
-
-                    });
 
                 });
             },
@@ -660,11 +760,13 @@
                 this.scrollToView = 'msg-0';
                 uni.hideKeyboard();
                 // this.scrollToView = 'msg-0';
+                this.updateFooterHeight(300)
 
 
             },
             //切换功能性按钮
             switchFun() {
+                this.updateFooterHeight(300)
                 this.chatType = 'voice'
                 this.showFunBtn = !this.showFunBtn;
                 this.emogiBox = false
@@ -683,6 +785,7 @@
 
             //发送消息
             sendMsg(data) {
+
                 const sedData = {
                     token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzQ4ODUsImV4cCI6MTc0MzY2Njg4NSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJ1c2VyIiwidXNlcl9pZCI6NDd9fQ.Ave2qlEte478fxGKlAD_Zbicmx-o27HG3LEnhHVoRLk",
                     type: 'dialog',
@@ -745,6 +848,7 @@
                 this.ws.send(sedData)
 
                 sedData.is_me = true,
+
                     sedData.headimgurl = this.info.headimgurl
                 this.messageList.push(sedData);
                 this.messageList.map(
@@ -755,7 +859,7 @@
                 )
 
                 this.$nextTick(() => {
-
+                    // this.dynamicFooterHeight = this.csHeiht
                     this.formData.content = '';
                     // #ifdef MP-WEIXIN
 
@@ -781,6 +885,8 @@
                     // #endif
                 });
             },
+
+
             //用户触摸屏幕的时候隐藏键盘
             touchstart() {
                 uni.hideKeyboard();
@@ -1101,18 +1207,32 @@
                 this.ws.close()
             }
         },
+
         onLoad(info) {
 
 
-            this.$nextTick(function () {
-                //进入页面滚动到底部
-                this.scrollTop = 99999999999
-                this.$nextTick(function () {
-                    this.scrollAnimation = true;
+            const query = uni.createSelectorQuery().in(this);
+            query.select('.input-box-flex').boundingClientRect(res => {
+                if (res) {
 
-                });
+                    this.csHeiht = res.height
+                    let csHeiht = this.px2rpx(csHeiht); // 将 px 转换为 rpx
+                }
+            }).exec();
 
+
+            uni.getSystemInfo({
+                success: (res) => {
+                    // 获取安全区域底部插入值
+                    const safeAreaInsetBottom = res.safeAreaInsets ? res.safeAreaInsets.bottom : 0;
+                    console.log('Safe Area Inset Bottom:', safeAreaInsetBottom);
+
+                    // 在这里可以使用 safeAreaInsetBottom 的值
+                    this.safeAreaInsetBottom = safeAreaInsetBottom;
+
+                }
             });
+
 
 
             const infoData = JSON.parse(info.data)
@@ -1142,6 +1262,9 @@
             this.init(params)
             this.$nextTick(() => {
                 this.getList(this.jkId)
+                //进入页面滚动到底部
+                this.scrollTop = 99999999
+                this.updateFooterHeight();
             })
 
 
@@ -1168,6 +1291,7 @@
             });
         },
         onReady() {
+
             //自定义返回按钮 因为原生的返回按钮不可阻止默认事件
             // #ifdef H5
             const icon = document.getElementsByClassName('uni-page-head-btn')[0];
@@ -1175,7 +1299,7 @@
             // #endif
 
             uni.setNavigationBarTitle({
-                title: this.fromUserInfo.fromUserName
+                title: this.fromUserInfo.fromUserName ? this.fromUserInfo.fromUserName : '系统客服'
             });
             // this.joinData();
             uni.getSystemInfo({
@@ -1193,6 +1317,7 @@
                     this.showFunBtn = false;
                 }
             });
+
         }
     };
 </script>

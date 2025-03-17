@@ -109,9 +109,6 @@ try {
     uButton: function () {
       return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 266))
     },
-    uInput: function () {
-      return Promise.all(/*! import() | node-modules/uview-ui/components/u-input/u-input */[__webpack_require__.e("common/vendor"), __webpack_require__.e("node-modules/uview-ui/components/u-input/u-input")]).then(__webpack_require__.bind(null, /*! uview-ui/components/u-input/u-input.vue */ 403))
-    },
     uGrid: function () {
       return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid/u-grid */ "node-modules/uview-ui/components/u-grid/u-grid").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid/u-grid.vue */ 273))
     },
@@ -143,20 +140,22 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
+  var g0 = _vm.kjList.length
   var m0 = _vm.chatType === "voice" ? __webpack_require__(/*! @/static/voice.png */ 116) : null
   var m1 = _vm.chatType === "keyboard" ? __webpack_require__(/*! @/static/keyboard.png */ 117) : null
   var m2 = __webpack_require__(/*! @/static/face.png */ 118)
   var m3 = __webpack_require__(/*! @/static/add.png */ 119)
-  var g0 = _vm.$u.trim(this.formData.content)
+  var g1 = _vm.$u.trim(this.formData.content)
   _vm.$mp.data = Object.assign(
     {},
     {
       $root: {
+        g0: g0,
         m0: m0,
         m1: m1,
         m2: m2,
         m3: m3,
-        g0: g0,
+        g1: g1,
       },
     }
   )
@@ -205,242 +204,10 @@ var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/r
 var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ 11));
 var _env = __webpack_require__(/*! ../../env */ 67);
 var _socket = _interopRequireDefault(__webpack_require__(/*! @/socket.js */ 77));
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+var _index = __webpack_require__(/*! @/filter/index.js */ 70);
+var _watch;
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var OrderPopup = function OrderPopup() {
   __webpack_require__.e(/*! require.ensure | components/popup */ "components/popup").then((function () {
     return resolve(__webpack_require__(/*! @/components/popup.vue */ 287));
@@ -490,6 +257,7 @@ var _default = {
       ['✌️', '🤞', '🤟', '🤘', '🤙', '👌', '👈', '👉', '👆', '👇', '🖐️', '✋', '👊', '🤛', '🤜', '🤚', '👋', '🖖', '💪', '🎈', '🎁', '🎂', '📱', '💻', '⌚', '📷', '🎮', '💰', '🔑', '🚗', '🛒', '🎒']],
       swiperIndex: 0,
       // 初始 swiper 索引
+      csHeiht: null,
       selectedEmoji: null,
       // 用于保存用户选择的表情
       msgImgList: [],
@@ -511,7 +279,8 @@ var _default = {
       messageList: [],
       popTile: '',
       jkId: '',
-      infoLeft: {}
+      infoLeft: {},
+      safeAreaInsetBottom: null
     }, (0, _defineProperty2.default)(_ref, "loading", true), (0, _defineProperty2.default)(_ref, "imgHeight", '1000px'), (0, _defineProperty2.default)(_ref, "mpInputMargin", false), (0, _defineProperty2.default)(_ref, "chatType", "voice"), (0, _defineProperty2.default)(_ref, "voiceTitle", '按住 说话'), (0, _defineProperty2.default)(_ref, "commonList", []), (0, _defineProperty2.default)(_ref, "throttleTimeout", null), (0, _defineProperty2.default)(_ref, "Recorder", uni.getRecorderManager()), (0, _defineProperty2.default)(_ref, "Audio", uni.createInnerAudioContext()), (0, _defineProperty2.default)(_ref, "recording", false), (0, _defineProperty2.default)(_ref, "isStopVoice", false), (0, _defineProperty2.default)(_ref, "voiceInterval", null), (0, _defineProperty2.default)(_ref, "voiceTime", 0), (0, _defineProperty2.default)(_ref, "canSend", true), (0, _defineProperty2.default)(_ref, "PointY", 0), (0, _defineProperty2.default)(_ref, "voiceIconText", "正在录音..."), (0, _defineProperty2.default)(_ref, "showFunBtn", false), (0, _defineProperty2.default)(_ref, "emogiBox", false), (0, _defineProperty2.default)(_ref, "AudioExam", null), (0, _defineProperty2.default)(_ref, "selectedQuickReplyIndex", null), (0, _defineProperty2.default)(_ref, "comPleteLikst", []), (0, _defineProperty2.default)(_ref, "funList", [{
       icon: "photo-fill",
       title: "照片",
@@ -529,7 +298,7 @@ var _default = {
     }, {
       icon: "kefu-ermai",
       title: "客服"
-    }]), (0, _defineProperty2.default)(_ref, "infoData", {}), _ref;
+    }]), (0, _defineProperty2.default)(_ref, "infoData", {}), (0, _defineProperty2.default)(_ref, "dynamicFooterHeight", 0), _ref;
   },
   components: {
     OrderPopup: OrderPopup,
@@ -537,23 +306,69 @@ var _default = {
     QuickReply: QuickReply,
     AutoComplete: AutoComplete
   },
-  watch: {
+  watch: (_watch = {
     // 取消选中
     showQuickReply: function showQuickReply(val) {
       if (!val) {
         this.selectedQuickReplyIndex = null;
       }
+    },
+    'formData.content': function formDataContent(newVal, oldVal) {
+      this.updateFooterHeight();
     }
-  },
+  }, (0, _defineProperty2.default)(_watch, "showQuickReply", function showQuickReply(val) {
+    if (!val) {
+      this.updateFooterHeight();
+    }
+  }), (0, _defineProperty2.default)(_watch, "emogiBox", function emogiBox(val) {
+    if (!val) {
+      this.updateFooterHeight();
+    }
+  }), (0, _defineProperty2.default)(_watch, "showFunBtn", function showFunBtn(val) {
+    if (!val) {
+      this.updateFooterHeight();
+    }
+  }), _watch),
+  mounted: function mounted() {},
   methods: {
-    handleInput: function handleInput(e) {
+    // 转换函数
+    convertTimestampsToDates: function convertTimestampsToDates(dataArray) {
+      var key = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'create_time';
+      return dataArray.map(function (item) {
+        return _objectSpread(_objectSpread({}, item), {}, (0, _defineProperty2.default)({}, key, (0, _index.formatTime)(item[key])));
+      });
+    },
+    updateFooterHeight: function updateFooterHeight(num) {
       var _this = this;
+      // 使用 UniApp API 获取节点高度
+      this.$nextTick(function () {
+        var query = uni.createSelectorQuery().in(_this);
+        query.select('.input-box-flex').boundingClientRect(function (res) {
+          if (res) {
+            var heightInPx = res.height;
+            var heightInRpx = _this.px2rpx(heightInPx);
+            if (num) {
+              _this.dynamicFooterHeight = heightInRpx + num;
+            } else {
+              _this.dynamicFooterHeight = heightInRpx;
+            }
+          }
+        }).exec();
+      });
+    },
+    // 转换px
+    px2rpx: function px2rpx(px) {
+      var screenWidth = uni.getSystemInfoSync().screenWidth;
+      return 750 / screenWidth * px;
+    },
+    handleInput: function handleInput(e) {
+      var _this2 = this;
       if (this.throttleTimeout) {
         clearTimeout(this.throttleTimeout);
       }
       this.throttleTimeout = setTimeout(function () {
         if (!(e.target.value.trim().length === 0)) {
-          _this.autoComplete(_this.jkId, e.target.value);
+          _this2.autoComplete(_this2.jkId, e.target.value);
         }
 
         // this.showAutoComplete = !!this.formData.content;
@@ -561,19 +376,18 @@ var _default = {
     },
     //模糊搜索
     autoComplete: function autoComplete(val, content) {
-      var _this2 = this;
+      var _this3 = this;
       return new Promise(function (resolve, reject) {
-        _this2.$api('autoComplete', {
+        _this3.$api('autoComplete', {
           client_id: val,
           keywords: content
         }).then(function (res) {
           if (res.status == 200) {
-            console.log(res.data);
             if (res.data) {
-              _this2.showAutoComplete = true;
-              _this2.comPleteLikst = res.data.list;
+              _this3.showAutoComplete = true;
+              _this3.comPleteLikst = res.data.list;
             } else {
-              _this2.showAutoComplete = false;
+              _this3.showAutoComplete = false;
             }
           }
           resolve(true);
@@ -584,8 +398,13 @@ var _default = {
       });
     },
     handleSelectSuggestion: function handleSelectSuggestion(item) {
+      var _this4 = this;
       this.formData.content = item;
       this.showAutoComplete = false;
+      this.$nextTick(function () {
+        _this4.updateFooterHeight();
+        // 或通过事件触发
+      });
     },
     handleCloseAutoComplete: function handleCloseAutoComplete() {
       this.showAutoComplete = false;
@@ -597,16 +416,16 @@ var _default = {
     },
     //获取分类
     getList: function getList(val) {
-      var _this3 = this;
+      var _this5 = this;
       console.log(val);
       return new Promise(function (resolve, reject) {
-        _this3.$api('getCateList', {
+        _this5.$api('getCateList', {
           client_id: val
         }).then(function (res) {
           if (res.status == 200) {
-            _this3.kjList = res.data.common_list;
-            _this3.commonList = res.data.cate_list;
-            console.log(_this3.commonList);
+            _this5.kjList = res.data.common_list;
+            _this5.commonList = res.data.cate_list;
+            console.log(_this5.commonList);
           }
           resolve(true);
         }).catch(function (e) {
@@ -617,8 +436,12 @@ var _default = {
     },
     scrollBool: function scrollBool() {
       this.showQuickReply = false;
+      this.showFunBtn = false;
+      this.emogiBox = false;
+      uni.hideKeyboard();
     },
     handleQuickReplyClick: function handleQuickReplyClick(item, index) {
+      this.updateFooterHeight(600);
       this.emogiBox = false;
       this.showFunBtn = false;
       this.scrollToView = 'msg-0';
@@ -644,8 +467,7 @@ var _default = {
     },
     //触发滑动到顶部(加载历史信息记录)
     loadHistory: function loadHistory(e) {
-      var _this4 = this;
-      console.log(e);
+      var _this6 = this;
       if (this.isHistoryLoading) {
         return;
       }
@@ -656,21 +478,20 @@ var _default = {
       setTimeout(function () {
         // 消息列表
 
-        console.log(_this4.historyList);
         // 获取消息中的图片,并处理显示尺寸
-        for (var i = 0; i < _this4.historyList.length; i++) {
-          _this4.historyList[i].hasBeenSentId = Math.floor(Math.random() * 1000 + 1);
-          _this4.messageList.unshift(_this4.historyList[i]);
+        for (var i = 0; i < _this6.historyList.length; i++) {
+          _this6.historyList[i].hasBeenSentId = Math.floor(Math.random() * 1000 + 1);
+          _this6.messageList.unshift(_this6.historyList[i]);
         }
         //这段代码很重要，不然每次加载历史数据都会跳到顶部
-        _this4.$nextTick(function () {
+        _this6.$nextTick(function () {
           this.scrollToView = 'msg-19';
           this.$nextTick(function () {
             this.scrollAnimation = true; //恢复滚动动画
           });
         });
 
-        _this4.isHistoryLoading = false;
+        _this6.isHistoryLoading = false;
       }, 1000);
     },
     //处理图片尺寸，如果不处理宽高，新进入页面加载图片时候会闪
@@ -701,7 +522,7 @@ var _default = {
       this.showcustomer = data;
     },
     init: function init(data) {
-      var _this5 = this;
+      var _this7 = this;
       // 初始化 WebSocket
       this.ws = new _socket.default('wss://192.168.0.119:8088/ws/', {
         maxReconnect: 5,
@@ -713,12 +534,12 @@ var _default = {
 
       // 监听事件
       this.ws.on('open', function () {
-        _this5.status = 'connected';
+        _this7.status = 'connected';
       });
       this.ws.send(data);
       this.ws.startHeartbeat(data);
       this.ws.on('close', function () {
-        return _this5.status = 'disconnected';
+        return _this7.status = 'disconnected';
       });
       this.ws.on('error', function (err) {
         return console.error('发生错误:', err);
@@ -726,15 +547,20 @@ var _default = {
       this.ws.on('message', function (res) {
         console.log(res);
         if (res.type == 'onConnect') {
-          _this5.jkId = res.data.client_id;
-          _this5.gethistoryList(_this5.jkId);
+          _this7.jkId = res.data.client_id;
+          _this7.gethistoryList(_this7.jkId);
+        }
+        if (res.type == 'dialog') {
+          res.data.is_me = false;
+          _this7.messageList.push(res.data);
+          _this7.scrollToView = 'msg-0';
         }
         if (res.type == 'login') {
-          _this5.messageList = res.data.list;
-          _this5.info = res.data.sender_info;
-          _this5.messageList.map(function (i, index) {
+          _this7.messageList = _this7.convertTimestampsToDates(res.data.list);
+          _this7.info = res.data.sender_info;
+          _this7.messageList.map(function (i, index) {
             i.path = i.content;
-            i.hasBeenSentId = _this5.messageList.length - 1 - index;
+            i.hasBeenSentId = _this7.messageList.length - 1 - index;
             if (i.is_me) {
               i.is_me = true;
             } else {
@@ -742,24 +568,17 @@ var _default = {
             }
           });
         }
-        _this5.$nextTick(function () {
-          //进入页面滚动到底部
-          this.scrollTop = 99999999999;
-          this.$nextTick(function () {
-            this.scrollAnimation = true;
-          });
-        });
       });
     },
     // 加载历史消息
     gethistoryList: function gethistoryList(page) {
-      var _this6 = this;
+      var _this8 = this;
       return new Promise(function (resolve, reject) {
-        _this6.$api('history', {
+        _this8.$api('history', {
           client_id: page
         }).then(function (res) {
           if (res.status == 200) {
-            _this6.historyList = res.data.list;
+            _this8.historyList = res.data.list;
           }
           resolve(true);
         }).catch(function (e) {
@@ -782,9 +601,11 @@ var _default = {
       this.scrollToView = 'msg-0';
       uni.hideKeyboard();
       // this.scrollToView = 'msg-0';
+      this.updateFooterHeight(300);
     },
     //切换功能性按钮
     switchFun: function switchFun() {
+      this.updateFooterHeight(300);
       this.chatType = 'voice';
       this.showFunBtn = !this.showFunBtn;
       this.emogiBox = false;
@@ -799,7 +620,7 @@ var _default = {
     },
     //发送消息
     sendMsg: function sendMsg(data) {
-      var _this7 = this;
+      var _this9 = this;
       var sedData = {
         token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzQ4ODUsImV4cCI6MTc0MzY2Njg4NSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJ1c2VyIiwidXNlcl9pZCI6NDd9fQ.Ave2qlEte478fxGKlAD_Zbicmx-o27HG3LEnhHVoRLk",
         type: 'dialog',
@@ -852,16 +673,17 @@ var _default = {
       sedData.is_me = true, sedData.headimgurl = this.info.headimgurl;
       this.messageList.push(sedData);
       this.messageList.map(function (i, index) {
-        i.hasBeenSentId = _this7.messageList.length - 1 - index;
+        i.hasBeenSentId = _this9.messageList.length - 1 - index;
       });
       this.$nextTick(function () {
-        _this7.formData.content = '';
-        _this7.scrollToView = 'msg-0';
-        if (_this7.showFunBtn) {
-          _this7.showFunBtn = false;
+        // this.dynamicFooterHeight = this.csHeiht
+        _this9.formData.content = '';
+        _this9.scrollToView = 'msg-0';
+        if (_this9.showFunBtn) {
+          _this9.showFunBtn = false;
         }
         if (sedData.contentType == 1) {
-          _this7.mpInputMargin = true;
+          _this9.mpInputMargin = true;
         }
 
         //h5浏览器并没有很好的办法控制键盘一直处于唤起状态 而且会有样式性的问题
@@ -899,14 +721,14 @@ var _default = {
     },
     //录音已经开始
     beginVoice: function beginVoice() {
-      var _this8 = this;
+      var _this10 = this;
       if (this.isStopVoice) {
         this.Recorder.stop();
         return;
       }
       this.voiceTitle = '松开 结束';
       this.voiceInterval = setInterval(function () {
-        _this8.voiceTime++;
+        _this10.voiceTime++;
       }, 1000);
     },
     //move 正在录音中
@@ -938,7 +760,7 @@ var _default = {
     },
     //处理录音文件
     handleRecorder: function handleRecorder(_ref2) {
-      var _this9 = this;
+      var _this11 = this;
       var tempFilePath = _ref2.tempFilePath,
         duration = _ref2.duration;
       var contentDuration;
@@ -946,7 +768,7 @@ var _default = {
       if (duration < 600) {
         this.voiceIconText = "说话时间过短";
         setTimeout(function () {
-          _this9.recording = false;
+          _this11.recording = false;
         }, 200);
         return;
       }
@@ -1012,7 +834,7 @@ var _default = {
     },
     //发送图片
     chooseImage: function chooseImage(sourceType) {
-      var _this10 = this;
+      var _this12 = this;
       uni.chooseMedia({
         count: 9,
         mediaType: ['image', 'video'],
@@ -1021,7 +843,7 @@ var _default = {
         maxDuration: 15,
         success: function success(res) {
           var files = res.tempFiles;
-          _this10.uploadFiles(files, res.type);
+          _this12.uploadFiles(files, res.type);
         }
       });
     },
@@ -1033,7 +855,7 @@ var _default = {
     },
     // H5 端处理
     uploadImageInH5: function uploadImageInH5(tempFilePath) {
-      var _this11 = this;
+      var _this13 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
         var response, blob, file, formData, result;
         return _regenerator.default.wrap(function _callee$(_context) {
@@ -1058,7 +880,7 @@ var _default = {
 
                 // 3. 发送请求（使用 uni.request 或原生 fetch）
                 _context.next = 13;
-                return _this11.sendFormDataRequest(formData);
+                return _this13.sendFormDataRequest(formData);
               case 13:
                 result = _context.sent;
                 console.log('上传成功:', result);
@@ -1078,7 +900,7 @@ var _default = {
     },
     // 小程序端处理
     uploadImageInMiniProgram: function uploadImageInMiniProgram(tempFilePath, type) {
-      var _this12 = this;
+      var _this14 = this;
       var uploadTasks = tempFilePath.map(function (file) {
         return new Promise(function (resolve, reject) {
           uni.uploadFile({
@@ -1090,13 +912,13 @@ var _default = {
               'Authorization': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzQ4ODUsImV4cCI6MTc0MzY2Njg4NSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJ1c2VyIiwidXNlcl9pZCI6NDd9fQ.Ave2qlEte478fxGKlAD_Zbicmx-o27HG3LEnhHVoRLk"
             },
             formData: {
-              client_id: _this12.jkId
+              client_id: _this14.jkId
             },
             success: function success(res) {
               if (res.statusCode === 200) {
                 try {
                   var data = JSON.parse(res.data);
-                  _this12.sendMsg({
+                  _this14.sendMsg({
                     contentType: type == 'image' ? 2 : 3,
                     content: data.data.list[0],
                     path: file.tempFilePath
@@ -1173,13 +995,23 @@ var _default = {
     }
   },
   onLoad: function onLoad(info) {
-    var _this13 = this;
-    this.$nextTick(function () {
-      //进入页面滚动到底部
-      this.scrollTop = 99999999999;
-      this.$nextTick(function () {
-        this.scrollAnimation = true;
-      });
+    var _this15 = this;
+    var query = uni.createSelectorQuery().in(this);
+    query.select('.input-box-flex').boundingClientRect(function (res) {
+      if (res) {
+        _this15.csHeiht = res.height;
+        var csHeiht = _this15.px2rpx(csHeiht); // 将 px 转换为 rpx
+      }
+    }).exec();
+    uni.getSystemInfo({
+      success: function success(res) {
+        // 获取安全区域底部插入值
+        var safeAreaInsetBottom = res.safeAreaInsets ? res.safeAreaInsets.bottom : 0;
+        console.log('Safe Area Inset Bottom:', safeAreaInsetBottom);
+
+        // 在这里可以使用 safeAreaInsetBottom 的值
+        _this15.safeAreaInsetBottom = safeAreaInsetBottom;
+      }
     });
     var infoData = JSON.parse(info.data);
     uni.setNavigationBarTitle({
@@ -1205,47 +1037,50 @@ var _default = {
 
     this.init(params);
     this.$nextTick(function () {
-      _this13.getList(_this13.jkId);
+      _this15.getList(_this15.jkId);
+      //进入页面滚动到底部
+      _this15.scrollTop = 99999999;
+      _this15.updateFooterHeight();
     });
 
     //录音开始事件
     this.Recorder.onStart(function (e) {
-      _this13.beginVoice();
+      _this15.beginVoice();
     });
     //录音结束事件
     this.Recorder.onStop(function (res) {
-      clearInterval(_this13.voiceInterval);
-      _this13.handleRecorder(res);
+      clearInterval(_this15.voiceInterval);
+      _this15.handleRecorder(res);
     });
 
     //音频停止事件
     this.Audio.onStop(function (e) {
-      _this13.closeAnmition();
+      _this15.closeAnmition();
     });
 
     //音频播放结束事件
     this.Audio.onEnded(function (e) {
-      _this13.closeAnmition();
+      _this15.closeAnmition();
     });
   },
   onReady: function onReady() {
-    var _this14 = this;
+    var _this16 = this;
     //自定义返回按钮 因为原生的返回按钮不可阻止默认事件
 
     uni.setNavigationBarTitle({
-      title: this.fromUserInfo.fromUserName
+      title: this.fromUserInfo.fromUserName ? this.fromUserInfo.fromUserName : '系统客服'
     });
     // this.joinData();
     uni.getSystemInfo({
       success: function success(res) {
-        _this14.imgHeight = res.windowHeight + 'px';
+        _this16.imgHeight = res.windowHeight + 'px';
       }
     });
     uni.onKeyboardHeightChange(function (res) {
       if (res.height == 0) {
-        _this14.mpInputMargin = false;
+        _this16.mpInputMargin = false;
       } else {
-        _this14.showFunBtn = false;
+        _this16.showFunBtn = false;
       }
     });
   }

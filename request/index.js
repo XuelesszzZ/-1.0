@@ -30,7 +30,7 @@ export default function api(url, data = {}) {
 			store.commit('OUT_LOGIN');
 		}
 
-		if (response.data.status != 200) { // 服务端返回的状态码不等于200，则reject()
+		if (response.data.status != 200 ) { // 服务端返回的状态码不等于200，则reject()
 			uni.showToast({
 				title: response.data.msg || '请求出错,稍后重试',
 				icon: 'none',

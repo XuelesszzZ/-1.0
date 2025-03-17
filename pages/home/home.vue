@@ -134,7 +134,7 @@
 					this.list = this.convertTimestampsToDates(data.data.list);
 					this.list = JSON.parse((JSON.stringify(this.list)))
 
-	
+
 
 
 				});
@@ -179,6 +179,8 @@
 			},
 			//跳转
 			linkTo(item, index) {
+				console.log(item);
+				
 				this.list[index].show = false;
 				const data = JSON.stringify(item)
 				this.$u.route({
