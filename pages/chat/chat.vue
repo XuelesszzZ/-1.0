@@ -1,5 +1,8 @@
 <template>
     <view class="content">
+
+        <u-top-tips ref="uTips"></u-top-tips>
+        <u-toast ref="uToast" />
         <view class="content-box" @touchstart="touchstart" id="content-box"
             :class="{'emoji-active':showFunBtn, 'emoji-active': emogiBox, 'showQuickReply-active': showQuickReply}">
             <!-- 背景图- 定位方式 -->
@@ -25,7 +28,7 @@
                 </view>
                 <view class="message" v-for="(item, index) in messageList" :key="index"
                     :id="`msg-${item.hasBeenSentId}`">
-                    <view class="timeBox" v-if="item.create_time">
+                    <view class="timeBox" v-if="item.is_show_time">
                         {{item.create_time}}
                     </view>
                     <view class="message-item " :class="item.is_me ? 'right' : 'left'">
@@ -226,7 +229,8 @@
         <order-popup :visible="showOrderPopup" @select="handleSelectOrder" :jkid='jkId' @closeBox='closeBox'
             :title='popTile' />
         <!-- 客服 -->
-        <customer :visible="showcustomer" @select="handleSelect" @closeBox='closeKf'></customer>
+        <customer :visible="showcustomer" @select="handleSelect" @closeBox='closeKf' :kfListProp='kfListProp'>
+        </customer>
         <!-- //语音动画 -->
         <view class="voice_an" v-if="recording">
             <view class="voice_an_icon">
@@ -256,12 +260,13 @@
     import {
         formatTime
     } from '@/filter/index.js'
+    import { emojData } from '@/utils/emojData.js';
 
     export default {
         data() {
             return {
 
-
+                emojData,
                 showAutoComplete: false,
                 showQuickReply: false,
                 selectedQuickReplyItem: null,
@@ -270,53 +275,13 @@
 
                 kjList: [
                 ],
-
+                kfListProp: [],
                 isHistoryLoading: false,
                 scrollAnimation: false,
                 scrollTop: 0,
                 scrollToView: '',
                 windowHeight: 0, // 动态计算高度
-                emojData: [
-                    // 分类1：笑脸与开心表情（33个）
-                    [
-                        '😀', '😃', '😄', '😁', '😆', '😊', '😇', '🙂', '😋', '😎',
-                        '🥳', '🤩', '🤗', '😺', '😸', '😹', '😻', '😼', '😽', '🙌',
-                        '👏', '👍', '🎉', '✨', '🌟', '💫', '❤️', '💯', '✅', '🌈',
-                        '🚀', '😌',
-                    ],
 
-                    // 分类2：爱心与浪漫（33个）
-                    [
-                        '❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔',
-                        '❣️', '💕', '💞', '💓', '💗', '💖', '💘', '💝', '💟', '💌',
-                        '😍', '🥰', '😘', '😗', '😙', '😚', '😻', '💋', '️👨', '💏',
-                        '👦', '💐',
-                    ],
-
-                    // 分类3：搞怪与顽皮（33个）
-                    [
-                        '😜', '😝', '😛', '🤪', '😏', '😒', '😔', '😫', '😩', '😤',
-                        '😠', '😡', '🤬', '😈', '👿', '💀', '👻', '👽', '🤖', '🎃',
-                        '😺', '😸', '😹', '👀', '👅', '👄', '🦷', '👂', '👃', '🤡',
-                        '👺', '💩',
-                    ],
-
-                    // 分类4：动物与自然（33个）
-                    [
-                        '🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐨', '🐯',
-                        '🦁', '🐮', '🐷', '🐸', '🐵', '🦄', '🐴', '🐦', '🐧', '🐔',
-                        '🐙', '🦑', '🐠', '🐳', '🌲', '🌳', '🌴', '🌵', '🌻', '🌸',
-                        '🦜', '🦢',
-                    ],
-
-                    // 分类5：动作与物品（33个）
-                    [
-                        '✌️', '🤞', '🤟', '🤘', '🤙', '👌', '👈', '👉', '👆', '👇',
-                        '🖐️', '✋', '👊', '🤛', '🤜', '🤚', '👋', '🖖', '💪', '🎈',
-                        '🎁', '🎂', '📱', '💻', '⌚', '📷', '🎮', '💰', '🔑', '🚗',
-                        '🛒', '🎒',
-                    ]
-                ],
                 swiperIndex: 0, // 初始 swiper 索引
                 csHeiht: null,
                 selectedEmoji: null, // 用于保存用户选择的表情
@@ -340,6 +305,7 @@
                 popTile: '',
                 jkId: '',
                 infoLeft: {},
+                kfTitle: '',
                 safeAreaInsetBottom: null,
                 loading: true, //标识是否正在获取数据
                 imgHeight: '1000px',
@@ -361,6 +327,7 @@
                 emogiBox: false, //是否展示表情选择
                 AudioExam: null, //正在播放音频的实例
                 selectedQuickReplyIndex: null,
+
                 comPleteLikst: [],
                 funList: [{
                     icon: "photo-fill",
@@ -398,18 +365,16 @@
             AutoComplete
         },
         watch: {
-            // 取消选中
-            showQuickReply(val) {
-                if (!val) {
-                    this.selectedQuickReplyIndex = null;
-                }
-            },
+
             'formData.content': function (newVal, oldVal) {
                 this.updateFooterHeight();
+
             },
             showQuickReply(val) {
 
                 if (!val) {
+
+
                     this.updateFooterHeight()
 
                 }
@@ -449,6 +414,8 @@
             },
 
             updateFooterHeight(num) {
+
+
                 // 使用 UniApp API 获取节点高度
                 this.$nextTick(() => {
                     const query = uni.createSelectorQuery().in(this);
@@ -458,6 +425,8 @@
                             let heightInRpx = this.px2rpx(heightInPx);
                             if (num) {
                                 this.dynamicFooterHeight = heightInRpx + num;
+
+
                             } else {
                                 this.dynamicFooterHeight = heightInRpx;
                             }
@@ -465,6 +434,7 @@
 
                         }
                     }).exec();
+
                 });
             },
             // 转换px
@@ -487,8 +457,6 @@
 
                     }
 
-
-
                     // this.showAutoComplete = !!this.formData.content;
                 }, 300); // 300 毫秒的节流时间
 
@@ -509,7 +477,7 @@
                             } else {
                                 this.showAutoComplete = false
                             }
-
+                            SSZAX
 
                         }
                         resolve(true);
@@ -538,6 +506,13 @@
             dataContent(data) {
                 console.log(data);
                 this.formData.content = data
+                this.showQuickReply = false;
+                this.selectedQuickReplyIndex = null
+                this.$nextTick(() => {
+                    this.updateFooterHeight();
+                    // 或通过事件触发
+
+                });
 
             },
             //获取分类
@@ -569,24 +544,28 @@
 
             },
             handleQuickReplyClick(item, index) {
-                this.updateFooterHeight(600);
                 this.emogiBox = false;
                 this.showFunBtn = false;
                 this.scrollToView = 'msg-0';
-                if (index === 0) {
+                if (index == 0) {
+                    this.updateFooterHeight(600);
                     if (this.selectedQuickReplyIndex === index) {
-                        this.selectedQuickReplyIndex = null;
 
+
+                        this.selectedQuickReplyIndex = null;
                         this.showQuickReply = false;
                     } else {
+
+
                         this.selectedQuickReplyIndex = index;
+
                         this.selectedQuickReplyItem = item;
                         this.showQuickReply = true;
                     }
                 } else {
-
+                    this.updateFooterHeight();
+                    this.showQuickReply = false;
                     this.formData.content = item.content;
-
                     this.selectedQuickReplyIndex = null; // 点击其他项时不高亮
                 }
             },
@@ -650,7 +629,15 @@
             },
             //转接客服
             handleSelect(item) {
-
+                console.log(item);
+                this.kfTitle = item.name
+                const params = {
+                    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
+                    type: "switch_cs",
+                    room_type: this.hosType,
+                    cs_uid: item.cs_uid
+                }
+                this.ws.send(params)
             },
             //关闭
             closeBox(data) {
@@ -663,7 +650,7 @@
             },
             init(data) {
                 // 初始化 WebSocket
-                this.ws = new WebSocketUtil('wss://192.168.0.119:8088/ws/', {
+                this.ws = new WebSocketUtil('wss://192.168.0.119:8088', {
                     maxReconnect: 5, // 最大重连次数
                     reconnectDelay: 2000, // 重连间隔
                     heartbeatInterval: 100000 // 心跳间隔
@@ -679,14 +666,42 @@
                 this.ws.on('close', () => this.status = 'disconnected');
                 this.ws.on('error', (err) => console.error('发生错误:', err));
                 this.ws.on('message', (res) => {
+
                     console.log(res);
 
                     if (res.type == 'onConnect') {
 
                         this.jkId = res.data.client_id
+                        //历史记录
                         this.gethistoryList(this.jkId)
 
+
                     }
+                    if (res.type == 'cs_list') {
+
+                        //客服列表
+                        this.kfListProp = res.data.list
+
+                    }
+                    if (res.type == 'switch_cs') {
+
+
+                        this.$refs.uToast.show({
+                            title: `${this.kfTitle}转接成功`,
+                            type: 'success',
+                            url: '/pages/home/home'
+                        })
+
+                    }
+                    if (res.type == 'error') {
+                        this.$refs.uTips.show({
+                            title: res.message,
+                            type: 'error',
+                            duration: '2300'
+                        })
+
+                    }
+
                     if (res.type == 'dialog') {
                         res.data.is_me = false
                         this.messageList.push(res.data)
@@ -718,6 +733,16 @@
 
                 });
             },
+            //客服
+            getDataList() {
+                const params = {
+                    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
+                    type: "cs_list",
+                    room_type: this.hosType,
+
+                }
+                this.ws.send(params)
+            },
 
             // 加载历史消息
             gethistoryList(page) {
@@ -728,7 +753,7 @@
                     }).then(res => {
 
                         if (res.status == 200) {
-                            this.historyList = res.data.list
+                            this.historyList = this.convertTimestampsToDates(res.data.list);
                         }
                         resolve(true);
                     }).catch((e) => {
@@ -857,7 +882,8 @@
                     }
 
                 )
-
+                this.showQuickReply = false
+                this.selectedQuickReplyIndex = null;
                 this.$nextTick(() => {
                     // this.dynamicFooterHeight = this.csHeiht
                     this.formData.content = '';
@@ -892,6 +918,7 @@
                 uni.hideKeyboard();
                 this.showFunBtn = false
                 this.emogiBox = false
+                this.selectedQuickReplyIndex = null
 
             },
             // userid 用户id
@@ -1164,11 +1191,6 @@
                 });
             },
         },
-        onPageScroll(e) {
-
-            // this.messageList = [...this.historyList , ...this.messageList];
-            // this.messageList.push({content:'222'})
-        },
 
 
         onNavigationBarButtonTap({
@@ -1209,8 +1231,6 @@
         },
 
         onLoad(info) {
-
-
             const query = uni.createSelectorQuery().in(this);
             query.select('.input-box-flex').boundingClientRect(res => {
                 if (res) {
@@ -1240,15 +1260,19 @@
                 title: infoData.title
             });
             this.roomType = infoData.room_type
+
+
             const params = {
 
-                user_id: null,
-                shop_id: null,
+                user_id: infoData.user_id,
+                shop_id: infoData.shop_id,
                 room_type: infoData.room_type,
                 type: "login",
-                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEzMzQ1MTUsImV4cCI6MTc0MzkyNjUxNSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJhZG1pbiIsImFkbWluX3VpZCI6MX19.fZwFbBkcbc4yv_FiGM6kSZ97L9eBNzFt7cAZZ-NR7H8"
+                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI"
             }
+
             this.hosType = infoData.room_type
+
             if (infoData.room_type === 1 || infoData.room_type === 2 || infoData.room_type === 3) {
                 params.shop_id = infoData.shop_id
                 this.hosId = infoData.shop_id
@@ -1261,10 +1285,16 @@
 
             this.init(params)
             this.$nextTick(() => {
-                this.getList(this.jkId)
+
                 //进入页面滚动到底部
-                this.scrollTop = 99999999
                 this.updateFooterHeight();
+                //客服
+                this.getDataList()
+                this.getList(this.jkId)
+                this.$nextTick(() => {
+                    this.scrollTop = 99999999
+                });
+
             })
 
 
@@ -1292,6 +1322,7 @@
         },
         onReady() {
 
+
             //自定义返回按钮 因为原生的返回按钮不可阻止默认事件
             // #ifdef H5
             const icon = document.getElementsByClassName('uni-page-head-btn')[0];
@@ -1317,6 +1348,7 @@
                     this.showFunBtn = false;
                 }
             });
+
 
         }
     };

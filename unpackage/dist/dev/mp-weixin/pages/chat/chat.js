@@ -33,7 +33,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _chat_vue_vue_type_template_id_bf16e7f4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./chat.vue?vue&type=template&id=bf16e7f4&scoped=true& */ 114);
 /* harmony import */ var _chat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./chat.vue?vue&type=script&lang=js& */ 120);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _chat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _chat_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _chat_vue_vue_type_style_index_0_id_bf16e7f4_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chat.vue?vue&type=style&index=0&id=bf16e7f4&lang=scss&scoped=true& */ 122);
+/* harmony import */ var _chat_vue_vue_type_style_index_0_id_bf16e7f4_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chat.vue?vue&type=style&index=0&id=bf16e7f4&lang=scss&scoped=true& */ 123);
 /* harmony import */ var _E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/runtime/componentNormalizer.js */ 32);
 
 var renderjs
@@ -100,23 +100,29 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    uTopTips: function () {
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-top-tips/u-top-tips */ "node-modules/uview-ui/components/u-top-tips/u-top-tips").then(__webpack_require__.bind(null, /*! uview-ui/components/u-top-tips/u-top-tips.vue */ 404))
+    },
+    uToast: function () {
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-toast/u-toast */ "node-modules/uview-ui/components/u-toast/u-toast").then(__webpack_require__.bind(null, /*! uview-ui/components/u-toast/u-toast.vue */ 330))
+    },
     uAvatar: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 252))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-avatar/u-avatar */ "node-modules/uview-ui/components/u-avatar/u-avatar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-avatar/u-avatar.vue */ 253))
     },
     uImage: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-image/u-image */ "node-modules/uview-ui/components/u-image/u-image").then(__webpack_require__.bind(null, /*! uview-ui/components/u-image/u-image.vue */ 259))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-image/u-image */ "node-modules/uview-ui/components/u-image/u-image").then(__webpack_require__.bind(null, /*! uview-ui/components/u-image/u-image.vue */ 260))
     },
     uButton: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 266))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-button/u-button */ "node-modules/uview-ui/components/u-button/u-button").then(__webpack_require__.bind(null, /*! uview-ui/components/u-button/u-button.vue */ 267))
     },
     uGrid: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid/u-grid */ "node-modules/uview-ui/components/u-grid/u-grid").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid/u-grid.vue */ 273))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid/u-grid */ "node-modules/uview-ui/components/u-grid/u-grid").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid/u-grid.vue */ 274))
     },
     uGridItem: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid-item/u-grid-item */ "node-modules/uview-ui/components/u-grid-item/u-grid-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid-item/u-grid-item.vue */ 280))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-grid-item/u-grid-item */ "node-modules/uview-ui/components/u-grid-item/u-grid-item").then(__webpack_require__.bind(null, /*! uview-ui/components/u-grid-item/u-grid-item.vue */ 281))
     },
     uIcon: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 238))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-icon/u-icon */ "node-modules/uview-ui/components/u-icon/u-icon").then(__webpack_require__.bind(null, /*! uview-ui/components/u-icon/u-icon.vue */ 239))
     },
   }
 } catch (e) {
@@ -205,56 +211,48 @@ var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 var _env = __webpack_require__(/*! ../../env */ 67);
 var _socket = _interopRequireDefault(__webpack_require__(/*! @/socket.js */ 77));
 var _index = __webpack_require__(/*! @/filter/index.js */ 70);
-var _watch;
+var _emojData = __webpack_require__(/*! @/utils/emojData.js */ 122);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var OrderPopup = function OrderPopup() {
   __webpack_require__.e(/*! require.ensure | components/popup */ "components/popup").then((function () {
-    return resolve(__webpack_require__(/*! @/components/popup.vue */ 287));
+    return resolve(__webpack_require__(/*! @/components/popup.vue */ 288));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var customer = function customer() {
   __webpack_require__.e(/*! require.ensure | components/customer */ "components/customer").then((function () {
-    return resolve(__webpack_require__(/*! @/components/customer.vue */ 294));
+    return resolve(__webpack_require__(/*! @/components/customer.vue */ 295));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var QuickReply = function QuickReply() {
   __webpack_require__.e(/*! require.ensure | components/QuickReply */ "components/QuickReply").then((function () {
-    return resolve(__webpack_require__(/*! @/components/QuickReply.vue */ 301));
+    return resolve(__webpack_require__(/*! @/components/QuickReply.vue */ 302));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var AutoComplete = function AutoComplete() {
   __webpack_require__.e(/*! require.ensure | components/AutoComplete */ "components/AutoComplete").then((function () {
-    return resolve(__webpack_require__(/*! @/components/AutoComplete.vue */ 308));
+    return resolve(__webpack_require__(/*! @/components/AutoComplete.vue */ 309));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {
   data: function data() {
     var _ref;
     return _ref = {
+      emojData: _emojData.emojData,
       showAutoComplete: false,
       showQuickReply: false,
       selectedQuickReplyItem: null,
       roomType: '',
       info: {},
       kjList: [],
+      kfListProp: [],
       isHistoryLoading: false,
       scrollAnimation: false,
       scrollTop: 0,
       scrollToView: '',
       windowHeight: 0,
       // 动态计算高度
-      emojData: [
-      // 分类1：笑脸与开心表情（33个）
-      ['😀', '😃', '😄', '😁', '😆', '😊', '😇', '🙂', '😋', '😎', '🥳', '🤩', '🤗', '😺', '😸', '😹', '😻', '😼', '😽', '🙌', '👏', '👍', '🎉', '✨', '🌟', '💫', '❤️', '💯', '✅', '🌈', '🚀', '😌'],
-      // 分类2：爱心与浪漫（33个）
-      ['❤️', '🧡', '💛', '💚', '💙', '💜', '🖤', '🤍', '🤎', '💔', '❣️', '💕', '💞', '💓', '💗', '💖', '💘', '💝', '💟', '💌', '😍', '🥰', '😘', '😗', '😙', '😚', '😻', '💋', '️👨', '💏', '👦', '💐'],
-      // 分类3：搞怪与顽皮（33个）
-      ['😜', '😝', '😛', '🤪', '😏', '😒', '😔', '😫', '😩', '😤', '😠', '😡', '🤬', '😈', '👿', '💀', '👻', '👽', '🤖', '🎃', '😺', '😸', '😹', '👀', '👅', '👄', '🦷', '👂', '👃', '🤡', '👺', '💩'],
-      // 分类4：动物与自然（33个）
-      ['🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐨', '🐯', '🦁', '🐮', '🐷', '🐸', '🐵', '🦄', '🐴', '🐦', '🐧', '🐔', '🐙', '🦑', '🐠', '🐳', '🌲', '🌳', '🌴', '🌵', '🌻', '🌸', '🦜', '🦢'],
-      // 分类5：动作与物品（33个）
-      ['✌️', '🤞', '🤟', '🤘', '🤙', '👌', '👈', '👉', '👆', '👇', '🖐️', '✋', '👊', '🤛', '🤜', '🤚', '👋', '🖖', '💪', '🎈', '🎁', '🎂', '📱', '💻', '⌚', '📷', '🎮', '💰', '🔑', '🚗', '🛒', '🎒']],
+
       swiperIndex: 0,
       // 初始 swiper 索引
       csHeiht: null,
@@ -280,6 +278,7 @@ var _default = {
       popTile: '',
       jkId: '',
       infoLeft: {},
+      kfTitle: '',
       safeAreaInsetBottom: null
     }, (0, _defineProperty2.default)(_ref, "loading", true), (0, _defineProperty2.default)(_ref, "imgHeight", '1000px'), (0, _defineProperty2.default)(_ref, "mpInputMargin", false), (0, _defineProperty2.default)(_ref, "chatType", "voice"), (0, _defineProperty2.default)(_ref, "voiceTitle", '按住 说话'), (0, _defineProperty2.default)(_ref, "commonList", []), (0, _defineProperty2.default)(_ref, "throttleTimeout", null), (0, _defineProperty2.default)(_ref, "Recorder", uni.getRecorderManager()), (0, _defineProperty2.default)(_ref, "Audio", uni.createInnerAudioContext()), (0, _defineProperty2.default)(_ref, "recording", false), (0, _defineProperty2.default)(_ref, "isStopVoice", false), (0, _defineProperty2.default)(_ref, "voiceInterval", null), (0, _defineProperty2.default)(_ref, "voiceTime", 0), (0, _defineProperty2.default)(_ref, "canSend", true), (0, _defineProperty2.default)(_ref, "PointY", 0), (0, _defineProperty2.default)(_ref, "voiceIconText", "正在录音..."), (0, _defineProperty2.default)(_ref, "showFunBtn", false), (0, _defineProperty2.default)(_ref, "emogiBox", false), (0, _defineProperty2.default)(_ref, "AudioExam", null), (0, _defineProperty2.default)(_ref, "selectedQuickReplyIndex", null), (0, _defineProperty2.default)(_ref, "comPleteLikst", []), (0, _defineProperty2.default)(_ref, "funList", [{
       icon: "photo-fill",
@@ -306,29 +305,26 @@ var _default = {
     QuickReply: QuickReply,
     AutoComplete: AutoComplete
   },
-  watch: (_watch = {
-    // 取消选中
-    showQuickReply: function showQuickReply(val) {
-      if (!val) {
-        this.selectedQuickReplyIndex = null;
-      }
-    },
+  watch: {
     'formData.content': function formDataContent(newVal, oldVal) {
       this.updateFooterHeight();
-    }
-  }, (0, _defineProperty2.default)(_watch, "showQuickReply", function showQuickReply(val) {
-    if (!val) {
-      this.updateFooterHeight();
-    }
-  }), (0, _defineProperty2.default)(_watch, "emogiBox", function emogiBox(val) {
-    if (!val) {
-      this.updateFooterHeight();
-    }
-  }), (0, _defineProperty2.default)(_watch, "showFunBtn", function showFunBtn(val) {
-    if (!val) {
-      this.updateFooterHeight();
-    }
-  }), _watch),
+    },
+    showQuickReply: function showQuickReply(val) {
+      if (!val) {
+        this.updateFooterHeight();
+      }
+    },
+    emogiBox: function emogiBox(val) {
+      if (!val) {
+        this.updateFooterHeight();
+      }
+    },
+    showFunBtn: function showFunBtn(val) {
+      if (!val) {
+        this.updateFooterHeight();
+      }
+    } // 其他监听器...
+  },
   mounted: function mounted() {},
   methods: {
     // 转换函数
@@ -389,6 +385,7 @@ var _default = {
             } else {
               _this3.showAutoComplete = false;
             }
+            SSZAX;
           }
           resolve(true);
         }).catch(function (e) {
@@ -411,21 +408,28 @@ var _default = {
     },
     //获取传递的文字
     dataContent: function dataContent(data) {
+      var _this5 = this;
       console.log(data);
       this.formData.content = data;
+      this.showQuickReply = false;
+      this.selectedQuickReplyIndex = null;
+      this.$nextTick(function () {
+        _this5.updateFooterHeight();
+        // 或通过事件触发
+      });
     },
     //获取分类
     getList: function getList(val) {
-      var _this5 = this;
+      var _this6 = this;
       console.log(val);
       return new Promise(function (resolve, reject) {
-        _this5.$api('getCateList', {
+        _this6.$api('getCateList', {
           client_id: val
         }).then(function (res) {
           if (res.status == 200) {
-            _this5.kjList = res.data.common_list;
-            _this5.commonList = res.data.cate_list;
-            console.log(_this5.commonList);
+            _this6.kjList = res.data.common_list;
+            _this6.commonList = res.data.cate_list;
+            console.log(_this6.commonList);
           }
           resolve(true);
         }).catch(function (e) {
@@ -441,11 +445,11 @@ var _default = {
       uni.hideKeyboard();
     },
     handleQuickReplyClick: function handleQuickReplyClick(item, index) {
-      this.updateFooterHeight(600);
       this.emogiBox = false;
       this.showFunBtn = false;
       this.scrollToView = 'msg-0';
-      if (index === 0) {
+      if (index == 0) {
+        this.updateFooterHeight(600);
         if (this.selectedQuickReplyIndex === index) {
           this.selectedQuickReplyIndex = null;
           this.showQuickReply = false;
@@ -455,6 +459,8 @@ var _default = {
           this.showQuickReply = true;
         }
       } else {
+        this.updateFooterHeight();
+        this.showQuickReply = false;
         this.formData.content = item.content;
         this.selectedQuickReplyIndex = null; // 点击其他项时不高亮
       }
@@ -467,7 +473,7 @@ var _default = {
     },
     //触发滑动到顶部(加载历史信息记录)
     loadHistory: function loadHistory(e) {
-      var _this6 = this;
+      var _this7 = this;
       if (this.isHistoryLoading) {
         return;
       }
@@ -479,19 +485,19 @@ var _default = {
         // 消息列表
 
         // 获取消息中的图片,并处理显示尺寸
-        for (var i = 0; i < _this6.historyList.length; i++) {
-          _this6.historyList[i].hasBeenSentId = Math.floor(Math.random() * 1000 + 1);
-          _this6.messageList.unshift(_this6.historyList[i]);
+        for (var i = 0; i < _this7.historyList.length; i++) {
+          _this7.historyList[i].hasBeenSentId = Math.floor(Math.random() * 1000 + 1);
+          _this7.messageList.unshift(_this7.historyList[i]);
         }
         //这段代码很重要，不然每次加载历史数据都会跳到顶部
-        _this6.$nextTick(function () {
+        _this7.$nextTick(function () {
           this.scrollToView = 'msg-19';
           this.$nextTick(function () {
             this.scrollAnimation = true; //恢复滚动动画
           });
         });
 
-        _this6.isHistoryLoading = false;
+        _this7.isHistoryLoading = false;
       }, 1000);
     },
     //处理图片尺寸，如果不处理宽高，新进入页面加载图片时候会闪
@@ -513,7 +519,17 @@ var _default = {
       // 跳转到订单详情页或其他操作
     },
     //转接客服
-    handleSelect: function handleSelect(item) {},
+    handleSelect: function handleSelect(item) {
+      console.log(item);
+      this.kfTitle = item.name;
+      var params = {
+        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
+        type: "switch_cs",
+        room_type: this.hosType,
+        cs_uid: item.cs_uid
+      };
+      this.ws.send(params);
+    },
     //关闭
     closeBox: function closeBox(data) {
       this.showOrderPopup = data;
@@ -522,9 +538,9 @@ var _default = {
       this.showcustomer = data;
     },
     init: function init(data) {
-      var _this7 = this;
+      var _this8 = this;
       // 初始化 WebSocket
-      this.ws = new _socket.default('wss://192.168.0.119:8088/ws/', {
+      this.ws = new _socket.default('wss://192.168.0.119:8088', {
         maxReconnect: 5,
         // 最大重连次数
         reconnectDelay: 2000,
@@ -534,12 +550,12 @@ var _default = {
 
       // 监听事件
       this.ws.on('open', function () {
-        _this7.status = 'connected';
+        _this8.status = 'connected';
       });
       this.ws.send(data);
       this.ws.startHeartbeat(data);
       this.ws.on('close', function () {
-        return _this7.status = 'disconnected';
+        return _this8.status = 'disconnected';
       });
       this.ws.on('error', function (err) {
         return console.error('发生错误:', err);
@@ -547,20 +563,39 @@ var _default = {
       this.ws.on('message', function (res) {
         console.log(res);
         if (res.type == 'onConnect') {
-          _this7.jkId = res.data.client_id;
-          _this7.gethistoryList(_this7.jkId);
+          _this8.jkId = res.data.client_id;
+          //历史记录
+          _this8.gethistoryList(_this8.jkId);
+        }
+        if (res.type == 'cs_list') {
+          //客服列表
+          _this8.kfListProp = res.data.list;
+        }
+        if (res.type == 'switch_cs') {
+          _this8.$refs.uToast.show({
+            title: "".concat(_this8.kfTitle, "\u8F6C\u63A5\u6210\u529F"),
+            type: 'success',
+            url: '/pages/home/home'
+          });
+        }
+        if (res.type == 'error') {
+          _this8.$refs.uTips.show({
+            title: res.message,
+            type: 'error',
+            duration: '2300'
+          });
         }
         if (res.type == 'dialog') {
           res.data.is_me = false;
-          _this7.messageList.push(res.data);
-          _this7.scrollToView = 'msg-0';
+          _this8.messageList.push(res.data);
+          _this8.scrollToView = 'msg-0';
         }
         if (res.type == 'login') {
-          _this7.messageList = _this7.convertTimestampsToDates(res.data.list);
-          _this7.info = res.data.sender_info;
-          _this7.messageList.map(function (i, index) {
+          _this8.messageList = _this8.convertTimestampsToDates(res.data.list);
+          _this8.info = res.data.sender_info;
+          _this8.messageList.map(function (i, index) {
             i.path = i.content;
-            i.hasBeenSentId = _this7.messageList.length - 1 - index;
+            i.hasBeenSentId = _this8.messageList.length - 1 - index;
             if (i.is_me) {
               i.is_me = true;
             } else {
@@ -570,15 +605,24 @@ var _default = {
         }
       });
     },
+    //客服
+    getDataList: function getDataList() {
+      var params = {
+        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
+        type: "cs_list",
+        room_type: this.hosType
+      };
+      this.ws.send(params);
+    },
     // 加载历史消息
     gethistoryList: function gethistoryList(page) {
-      var _this8 = this;
+      var _this9 = this;
       return new Promise(function (resolve, reject) {
-        _this8.$api('history', {
+        _this9.$api('history', {
           client_id: page
         }).then(function (res) {
           if (res.status == 200) {
-            _this8.historyList = res.data.list;
+            _this9.historyList = _this9.convertTimestampsToDates(res.data.list);
           }
           resolve(true);
         }).catch(function (e) {
@@ -620,7 +664,7 @@ var _default = {
     },
     //发送消息
     sendMsg: function sendMsg(data) {
-      var _this9 = this;
+      var _this10 = this;
       var sedData = {
         token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzQ4ODUsImV4cCI6MTc0MzY2Njg4NSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJ1c2VyIiwidXNlcl9pZCI6NDd9fQ.Ave2qlEte478fxGKlAD_Zbicmx-o27HG3LEnhHVoRLk",
         type: 'dialog',
@@ -673,17 +717,19 @@ var _default = {
       sedData.is_me = true, sedData.headimgurl = this.info.headimgurl;
       this.messageList.push(sedData);
       this.messageList.map(function (i, index) {
-        i.hasBeenSentId = _this9.messageList.length - 1 - index;
+        i.hasBeenSentId = _this10.messageList.length - 1 - index;
       });
+      this.showQuickReply = false;
+      this.selectedQuickReplyIndex = null;
       this.$nextTick(function () {
         // this.dynamicFooterHeight = this.csHeiht
-        _this9.formData.content = '';
-        _this9.scrollToView = 'msg-0';
-        if (_this9.showFunBtn) {
-          _this9.showFunBtn = false;
+        _this10.formData.content = '';
+        _this10.scrollToView = 'msg-0';
+        if (_this10.showFunBtn) {
+          _this10.showFunBtn = false;
         }
         if (sedData.contentType == 1) {
-          _this9.mpInputMargin = true;
+          _this10.mpInputMargin = true;
         }
 
         //h5浏览器并没有很好的办法控制键盘一直处于唤起状态 而且会有样式性的问题
@@ -694,6 +740,7 @@ var _default = {
       uni.hideKeyboard();
       this.showFunBtn = false;
       this.emogiBox = false;
+      this.selectedQuickReplyIndex = null;
     },
     // userid 用户id
     linkToBusinessCard: function linkToBusinessCard(userId) {
@@ -721,14 +768,14 @@ var _default = {
     },
     //录音已经开始
     beginVoice: function beginVoice() {
-      var _this10 = this;
+      var _this11 = this;
       if (this.isStopVoice) {
         this.Recorder.stop();
         return;
       }
       this.voiceTitle = '松开 结束';
       this.voiceInterval = setInterval(function () {
-        _this10.voiceTime++;
+        _this11.voiceTime++;
       }, 1000);
     },
     //move 正在录音中
@@ -760,7 +807,7 @@ var _default = {
     },
     //处理录音文件
     handleRecorder: function handleRecorder(_ref2) {
-      var _this11 = this;
+      var _this12 = this;
       var tempFilePath = _ref2.tempFilePath,
         duration = _ref2.duration;
       var contentDuration;
@@ -768,7 +815,7 @@ var _default = {
       if (duration < 600) {
         this.voiceIconText = "说话时间过短";
         setTimeout(function () {
-          _this11.recording = false;
+          _this12.recording = false;
         }, 200);
         return;
       }
@@ -834,7 +881,7 @@ var _default = {
     },
     //发送图片
     chooseImage: function chooseImage(sourceType) {
-      var _this12 = this;
+      var _this13 = this;
       uni.chooseMedia({
         count: 9,
         mediaType: ['image', 'video'],
@@ -843,7 +890,7 @@ var _default = {
         maxDuration: 15,
         success: function success(res) {
           var files = res.tempFiles;
-          _this12.uploadFiles(files, res.type);
+          _this13.uploadFiles(files, res.type);
         }
       });
     },
@@ -855,7 +902,7 @@ var _default = {
     },
     // H5 端处理
     uploadImageInH5: function uploadImageInH5(tempFilePath) {
-      var _this13 = this;
+      var _this14 = this;
       return (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
         var response, blob, file, formData, result;
         return _regenerator.default.wrap(function _callee$(_context) {
@@ -880,7 +927,7 @@ var _default = {
 
                 // 3. 发送请求（使用 uni.request 或原生 fetch）
                 _context.next = 13;
-                return _this13.sendFormDataRequest(formData);
+                return _this14.sendFormDataRequest(formData);
               case 13:
                 result = _context.sent;
                 console.log('上传成功:', result);
@@ -900,7 +947,7 @@ var _default = {
     },
     // 小程序端处理
     uploadImageInMiniProgram: function uploadImageInMiniProgram(tempFilePath, type) {
-      var _this14 = this;
+      var _this15 = this;
       var uploadTasks = tempFilePath.map(function (file) {
         return new Promise(function (resolve, reject) {
           uni.uploadFile({
@@ -912,13 +959,13 @@ var _default = {
               'Authorization': "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzQ4ODUsImV4cCI6MTc0MzY2Njg4NSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJ1c2VyIiwidXNlcl9pZCI6NDd9fQ.Ave2qlEte478fxGKlAD_Zbicmx-o27HG3LEnhHVoRLk"
             },
             formData: {
-              client_id: _this14.jkId
+              client_id: _this15.jkId
             },
             success: function success(res) {
               if (res.statusCode === 200) {
                 try {
                   var data = JSON.parse(res.data);
-                  _this14.sendMsg({
+                  _this15.sendMsg({
                     contentType: type == 'image' ? 2 : 3,
                     content: data.data.list[0],
                     path: file.tempFilePath
@@ -956,11 +1003,6 @@ var _default = {
       });
     }
   },
-  onPageScroll: function onPageScroll(e) {
-
-    // this.messageList = [...this.historyList , ...this.messageList];
-    // this.messageList.push({content:'222'})
-  },
   onNavigationBarButtonTap: function onNavigationBarButtonTap(_ref3) {
     var index = _ref3.index;
     if (index == 0) {
@@ -995,12 +1037,12 @@ var _default = {
     }
   },
   onLoad: function onLoad(info) {
-    var _this15 = this;
+    var _this16 = this;
     var query = uni.createSelectorQuery().in(this);
     query.select('.input-box-flex').boundingClientRect(function (res) {
       if (res) {
-        _this15.csHeiht = res.height;
-        var csHeiht = _this15.px2rpx(csHeiht); // 将 px 转换为 rpx
+        _this16.csHeiht = res.height;
+        var csHeiht = _this16.px2rpx(csHeiht); // 将 px 转换为 rpx
       }
     }).exec();
     uni.getSystemInfo({
@@ -1010,7 +1052,7 @@ var _default = {
         console.log('Safe Area Inset Bottom:', safeAreaInsetBottom);
 
         // 在这里可以使用 safeAreaInsetBottom 的值
-        _this15.safeAreaInsetBottom = safeAreaInsetBottom;
+        _this16.safeAreaInsetBottom = safeAreaInsetBottom;
       }
     });
     var infoData = JSON.parse(info.data);
@@ -1019,11 +1061,11 @@ var _default = {
     });
     this.roomType = infoData.room_type;
     var params = {
-      user_id: null,
-      shop_id: null,
+      user_id: infoData.user_id,
+      shop_id: infoData.shop_id,
       room_type: infoData.room_type,
       type: "login",
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEzMzQ1MTUsImV4cCI6MTc0MzkyNjUxNSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJhZG1pbiIsImFkbWluX3VpZCI6MX19.fZwFbBkcbc4yv_FiGM6kSZ97L9eBNzFt7cAZZ-NR7H8"
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI"
     };
     this.hosType = infoData.room_type;
     if (infoData.room_type === 1 || infoData.room_type === 2 || infoData.room_type === 3) {
@@ -1037,34 +1079,38 @@ var _default = {
 
     this.init(params);
     this.$nextTick(function () {
-      _this15.getList(_this15.jkId);
       //进入页面滚动到底部
-      _this15.scrollTop = 99999999;
-      _this15.updateFooterHeight();
+      _this16.updateFooterHeight();
+      //客服
+      _this16.getDataList();
+      _this16.getList(_this16.jkId);
+      _this16.$nextTick(function () {
+        _this16.scrollTop = 99999999;
+      });
     });
 
     //录音开始事件
     this.Recorder.onStart(function (e) {
-      _this15.beginVoice();
+      _this16.beginVoice();
     });
     //录音结束事件
     this.Recorder.onStop(function (res) {
-      clearInterval(_this15.voiceInterval);
-      _this15.handleRecorder(res);
+      clearInterval(_this16.voiceInterval);
+      _this16.handleRecorder(res);
     });
 
     //音频停止事件
     this.Audio.onStop(function (e) {
-      _this15.closeAnmition();
+      _this16.closeAnmition();
     });
 
     //音频播放结束事件
     this.Audio.onEnded(function (e) {
-      _this15.closeAnmition();
+      _this16.closeAnmition();
     });
   },
   onReady: function onReady() {
-    var _this16 = this;
+    var _this17 = this;
     //自定义返回按钮 因为原生的返回按钮不可阻止默认事件
 
     uni.setNavigationBarTitle({
@@ -1073,14 +1119,14 @@ var _default = {
     // this.joinData();
     uni.getSystemInfo({
       success: function success(res) {
-        _this16.imgHeight = res.windowHeight + 'px';
+        _this17.imgHeight = res.windowHeight + 'px';
       }
     });
     uni.onKeyboardHeightChange(function (res) {
       if (res.height == 0) {
-        _this16.mpInputMargin = false;
+        _this17.mpInputMargin = false;
       } else {
-        _this16.showFunBtn = false;
+        _this17.showFunBtn = false;
       }
     });
   }
@@ -1090,7 +1136,7 @@ exports.default = _default;
 
 /***/ }),
 
-/***/ 122:
+/***/ 123:
 /*!**************************************************************************************************!*\
   !*** D:/仿微信wechat/pages/chat/chat.vue?vue&type=style&index=0&id=bf16e7f4&lang=scss&scoped=true& ***!
   \**************************************************************************************************/
@@ -1099,14 +1145,14 @@ exports.default = _default;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _E_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_E_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_2_E_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_sass_loader_dist_cjs_js_ref_8_oneOf_1_4_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_chat_vue_vue_type_style_index_0_id_bf16e7f4_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./chat.vue?vue&type=style&index=0&id=bf16e7f4&lang=scss&scoped=true& */ 123);
+/* harmony import */ var _E_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_E_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_2_E_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_sass_loader_dist_cjs_js_ref_8_oneOf_1_4_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_chat_vue_vue_type_style_index_0_id_bf16e7f4_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!./chat.vue?vue&type=style&index=0&id=bf16e7f4&lang=scss&scoped=true& */ 124);
 /* harmony import */ var _E_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_E_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_2_E_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_sass_loader_dist_cjs_js_ref_8_oneOf_1_4_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_chat_vue_vue_type_style_index_0_id_bf16e7f4_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_E_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_E_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_2_E_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_sass_loader_dist_cjs_js_ref_8_oneOf_1_4_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_chat_vue_vue_type_style_index_0_id_bf16e7f4_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__);
 /* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _E_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_E_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_2_E_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_sass_loader_dist_cjs_js_ref_8_oneOf_1_4_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_chat_vue_vue_type_style_index_0_id_bf16e7f4_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _E_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_E_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_2_E_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_sass_loader_dist_cjs_js_ref_8_oneOf_1_4_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_chat_vue_vue_type_style_index_0_id_bf16e7f4_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
  /* harmony default export */ __webpack_exports__["default"] = (_E_HBuilderX_plugins_uniapp_cli_node_modules_mini_css_extract_plugin_dist_loader_js_ref_8_oneOf_1_0_E_HBuilderX_plugins_uniapp_cli_node_modules_css_loader_dist_cjs_js_ref_8_oneOf_1_1_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_loaders_stylePostLoader_js_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_2_E_HBuilderX_plugins_uniapp_cli_node_modules_postcss_loader_src_index_js_ref_8_oneOf_1_3_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_sass_loader_dist_cjs_js_ref_8_oneOf_1_4_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_webpack_preprocess_loader_index_js_ref_8_oneOf_1_5_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_vue_cli_plugin_uni_packages_vue_loader_lib_index_js_vue_loader_options_E_HBuilderX_plugins_uniapp_cli_node_modules_dcloudio_webpack_uni_mp_loader_lib_style_js_chat_vue_vue_type_style_index_0_id_bf16e7f4_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 
-/***/ 123:
+/***/ 124:
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/mini-css-extract-plugin/dist/loader.js??ref--8-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--8-oneOf-1-1!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-2!./node_modules/postcss-loader/src??ref--8-oneOf-1-3!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/sass-loader/dist/cjs.js??ref--8-oneOf-1-4!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/webpack-preprocess-loader??ref--8-oneOf-1-5!./node_modules/@dcloudio/vue-cli-plugin-uni/packages/vue-loader/lib??vue-loader-options!./node_modules/@dcloudio/webpack-uni-mp-loader/lib/style.js!D:/仿微信wechat/pages/chat/chat.vue?vue&type=style&index=0&id=bf16e7f4&lang=scss&scoped=true& ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/

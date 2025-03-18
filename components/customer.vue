@@ -16,7 +16,7 @@
 					icon="https://cdn.uviewui.com/uview/empty/list.png"></u-empty>
 
 				<!-- 订单项 -->
-				<view v-for="(item, index) in kfList" :key="index" class="order-item" >
+				<view v-for="(item, index) in kfList" :key="index" class="order-item">
 
 
 
@@ -26,18 +26,19 @@
 
 						<view class="order-content">
 							<view class="titleBox">
-					
+
 								<view class="good_title">
-									<view >
+									<view>
 										{{item.name}}
 									</view>
-						
+
 								</view>
 							</view>
 							<view class="buttonBox">
 
 								<u-button size="mini" shape="circle"
-									:custom-style="{background: '#FF4400',color: '#fff'}" @click="selectOrder(item)">转接</u-button>
+									:custom-style="{background: '#FF4400',color: '#fff'}"
+									@click="selectOrder(item)">转接</u-button>
 							</view>
 
 						</view>
@@ -52,53 +53,53 @@
 
 <script>
 	export default {
-	  props: {
-		// 控制弹窗显示
-		visible: {
-		  type: Boolean,
-		  default: false
+		props: {
+			// 控制弹窗显示
+			visible: {
+				type: Boolean,
+				default: false
+			},
+			jkid: {
+				default: ''
+			},
+			kfListProp: {
+				type: Array,
+				default: () => []
+			},
 		},
-		jkid: {
-		  default: ''
+		data() {
+			return {
+				showPopup: this.visible,
+				kfList: this.kfListProp // 初始化订单数据
+			};
 		},
-		kfListProp: {
-		  type: Array,
-		  default: () => []
+		watch: {
+			visible(newVal) {
+				this.showPopup = newVal;
+				if (newVal) {
+					this.kfList = this.kfListProp; // 当弹窗显示时，更新 kfList
+				}
+			},
+			kfListProp(newVal) {
+				this.kfList = newVal;
+				console.log(this.kfList);
+			}
 		},
-	  },
-	  data() {
-		return {
-		  showPopup: this.visible,
-		  kfList: this.kfListProp // 初始化订单数据
-		};
-	  },
-	  watch: {
-		visible(newVal) {
-		  this.showPopup = newVal;
-		  if (newVal) {
-			this.kfList = this.kfListProp; // 当弹窗显示时，更新 kfList
-		  }
-		},
-		kfListProp(newVal) {
-		  this.kfList = newVal;
-		  console.log(this.kfList);
+		methods: {
+			// 选择订单
+			selectOrder(item) {
+				this.$emit('select', item);
+				this.handleClose();
+			},
+			// 关闭弹窗
+			handleClose() {
+				this.showPopup = false;
+				this.$emit('closeBox', false);
+				this.kfList = [];
+			}
 		}
-	  },
-	  methods: {
-		// 选择订单
-		selectOrder(item) {
-		  this.$emit('select', item);
-		  this.handleClose();
-		},
-		// 关闭弹窗
-		handleClose() {
-		  this.showPopup = false;
-		  this.$emit('closeBox', false);
-		  this.kfList = [];
-		}
-	  }
 	};
-	</script>
+</script>
 <style lang="scss" scoped>
 	.order-popup-container {
 		height: 80vh;
@@ -143,7 +144,7 @@
 					font-size: 30rpx;
 					color: #333;
 					margin-bottom: 10rpx;
-	
+
 				}
 
 				.goods-spec {
