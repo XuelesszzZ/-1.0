@@ -30,6 +30,15 @@ page.data-v-bf16e7f4 {
 .data-v-bf16e7f4:root {
   --safe-area-inset-bottom: env(safe-area-inset-bottom);
 }
+.u-toast.data-v-bf16e7f4 {
+  text-align: center;
+  /* 确保文字居中 */
+  left: 50%;
+  /* 水平居中 */
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  /* 修正偏移 */
+}
 .loading.data-v-bf16e7f4 {
   display: flex;
   justify-content: center;

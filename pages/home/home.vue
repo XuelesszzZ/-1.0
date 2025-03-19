@@ -1,5 +1,7 @@
 <template>
 	<view class="content">
+		<u-modal v-model="show" :content="content" @confirm="confirm"></u-modal>
+
 		<!-- #ifdef MP-WEIXIN -->
 		<u-navbar :is-back="false" title="会话列表" :background="{ background: '#f8f8f8'  }" title-color="#404133"
 			:border-bottom="false" z-index="1001">
@@ -56,7 +58,8 @@
 		},
 		data() {
 			return {
-
+				show: false,
+				content: '是否同意转接客服?',
 				list: [
 					{
 						final_content: "21",
@@ -84,7 +87,7 @@
 				ws: null,
 				socketList: {
 					type: "message_list",
-					token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzQ4ODUsImV4cCI6MTc0MzY2Njg4NSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJ1c2VyIiwidXNlcl9pZCI6NDd9fQ.Ave2qlEte478fxGKlAD_Zbicmx-o27HG3LEnhHVoRLk"
+					token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI"
 
 				}
 
@@ -129,17 +132,35 @@
 				});
 				this.ws.on('close', () => this.status = 'disconnected');
 				this.ws.on('error', (err) => console.error('WebSocket 发生错误:', err));
-				this.ws.on('message', (data) => {
-
-					this.list = this.convertTimestampsToDates(data.data.list);
-					this.list = JSON.parse((JSON.stringify(this.list)))
+				this.ws.on('message', (res) => {
 
 
+
+					if (res.type == 'message_list') {
+						this.list = this.convertTimestampsToDates(res.data.list);
+						console.log(list);
+
+
+
+					}
+					if (res.type == 'switch_cs') {
+						this.show = true
+						this.dataSwitch = res.data
+
+					}
 
 
 				});
 			},
-
+			confirm() {
+				const datas = JSON.stringify(this.dataSwitch)
+				this.$u.route({
+					url: 'pages/chat/chat',
+					params: {
+						data: datas
+					}
+				});
+			},
 			// 转换函数
 			convertTimestampsToDates(dataArray, key = 'final_time') {
 
@@ -180,7 +201,7 @@
 			//跳转
 			linkTo(item, index) {
 				console.log(item);
-				
+
 				this.list[index].show = false;
 				const data = JSON.stringify(item)
 				this.$u.route({

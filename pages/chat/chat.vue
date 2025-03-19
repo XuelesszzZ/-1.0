@@ -1,7 +1,7 @@
 <template>
     <view class="content">
 
-        <u-top-tips ref="uTips"></u-top-tips>
+
         <u-toast ref="uToast" />
         <view class="content-box" @touchstart="touchstart" id="content-box"
             :class="{'emoji-active':showFunBtn, 'emoji-active': emogiBox, 'showQuickReply-active': showQuickReply}">
@@ -153,22 +153,16 @@
             @touchmove.stop.prevent>
             <view class="input-box-flex">
                 <!-- #ifndef H5 -->
-                <image v-if="chatType === 'voice'" class="icon_img" :src="require('@/static/voice.png')"
+                <!-- <image v-if="chatType === 'voice'" class="icon_img" :src="require('@/static/voice.png')"
                     @click="switchChatType('keyboard')"></image>
                 <image v-if="chatType === 'keyboard'" class="icon_img" :src="require('@/static/keyboard.png')"
-                    @click="switchChatType('voice')"></image>
+                    @click="switchChatType('voice')"></image> -->
                 <!-- #endif -->
                 <view class="input-box-flex-grow">
                     <textarea v-if="chatType === 'voice'" type="text" class="content" id="input"
                         v-model="formData.content" :hold-keyboard="true" :confirm-type="'send'" :confirm-hold="true"
                         auto-height="true" placeholder-style="color:#DDDDDD;" :cursor-spacing="10" @input="handleInput"
                         @confirm="sendMsg(null)" ref="input" :show-confirm-bar='false' confirm-type="done" />
-                    <!-- <textarea v-model="formData.content" v-if="chatType === 'voice'" id="input" 
-                        border="true"  auto-height="true" clearable="false" :cursor-spacing="10"
-                        adjust-position="true" @input="handleInput" @confirm="sendMsg(null)"
-                        :hold-keyboard="true" :confirm-hold="true" class="content" /> -->
-
-
                     <view class="voice_title" v-if="chatType === 'keyboard'"
                         :style="{ background: recording ? '#c7c6c6' : '#FFFFFF' }" @touchstart.stop.prevent="startVoice"
                         @touchmove.stop.prevent="moveVoice" @touchend.stop="endVoice" @touchcancel.stop="cancelVoice">
@@ -434,8 +428,13 @@
 
                         }
                     }).exec();
+                    this.$nextTick(function () {
+                        // 滚动到底
+                        this.scrollToView = 'msg-0';
+                    });
 
                 });
+
             },
             // 转换px
             px2rpx(px) {
@@ -546,7 +545,7 @@
             handleQuickReplyClick(item, index) {
                 this.emogiBox = false;
                 this.showFunBtn = false;
-                this.scrollToView = 'msg-0';
+
                 if (index == 0) {
                     this.updateFooterHeight(600);
                     if (this.selectedQuickReplyIndex === index) {
@@ -568,6 +567,10 @@
                     this.formData.content = item.content;
                     this.selectedQuickReplyIndex = null; // 点击其他项时不高亮
                 }
+                this.$nextTick(function () {
+                    // 滚动到底
+                    this.scrollToView = 'msg-0';
+                });
             },
             del() {
 
@@ -689,23 +692,43 @@
                         this.$refs.uToast.show({
                             title: `${this.kfTitle}转接成功`,
                             type: 'success',
-                            url: '/pages/home/home'
+                            duration: 1000, // 显示 2 秒后跳转
+
+
+                            callback: () => {
+                                // 提示框关闭后跳转页面
+                                uni.switchTab({
+                                    url: '/pages/home/home'
+                                });
+                            }
                         })
 
                     }
                     if (res.type == 'error') {
-                        this.$refs.uTips.show({
+                        this.$refs.uToast.show({
                             title: res.message,
                             type: 'error',
-                            duration: '2300'
-                        })
+                            duration: 1000, // 显示 2 秒后跳转
 
+
+                            callback: () => {
+
+
+                                // 提示框关闭后跳转页面
+                                uni.switchTab({
+                                    url: '/pages/home/home'
+                                });
+                            }
+                        })
                     }
 
                     if (res.type == 'dialog') {
                         res.data.is_me = false
                         this.messageList.push(res.data)
-                        this.scrollToView = 'msg-0';
+                        this.$nextTick(function () {
+                            // 滚动到底
+                            this.scrollToView = 'msg-0';
+                        });
                     }
                     if (res.type == 'login') {
 
@@ -729,7 +752,14 @@
 
                     }
 
+                    this.$nextTick(function () {
+                        //进入页面滚动到底部
+                        this.scrollTop = 9999;
+                        this.$nextTick(function () {
+                            this.scrollAnimation = true;
+                        });
 
+                    });
 
                 });
             },
@@ -782,11 +812,14 @@
                 this.emogiBox = !this.emogiBox;
                 this.showFunBtn = false;
                 this.showQuickReply = false;
-                this.scrollToView = 'msg-0';
-                uni.hideKeyboard();
-                // this.scrollToView = 'msg-0';
-                this.updateFooterHeight(300)
 
+                uni.hideKeyboard();
+
+                this.updateFooterHeight(300)
+                this.$nextTick(function () {
+                    // 滚动到底
+                    this.scrollToView = 'msg-0';
+                });
 
             },
             //切换功能性按钮
@@ -812,7 +845,7 @@
             sendMsg(data) {
 
                 const sedData = {
-                    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzQ4ODUsImV4cCI6MTc0MzY2Njg4NSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJ1c2VyIiwidXNlcl9pZCI6NDd9fQ.Ave2qlEte478fxGKlAD_Zbicmx-o27HG3LEnhHVoRLk",
+                    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
                     type: 'dialog',
                     shop_id: null,
                     user_id: null,
@@ -1063,7 +1096,7 @@
                     this.popTile = '发送商品'
                 } else if (index == 4) {
                     let parmas = {
-                        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzQ4ODUsImV4cCI6MTc0MzY2Njg4NSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJ1c2VyIiwidXNlcl9pZCI6NDd9fQ.Ave2qlEte478fxGKlAD_Zbicmx-o27HG3LEnhHVoRLk",
+                        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
                         type: "cs_list",
                         room_type: this.hosType
                     }
@@ -1221,7 +1254,7 @@
             const params = {
                 room_type: this.roomType,
                 type: "logout",
-                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzQ4ODUsImV4cCI6MTc0MzY2Njg4NSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJ1c2VyIiwidXNlcl9pZCI6NDd9fQ.Ave2qlEte478fxGKlAD_Zbicmx-o27HG3LEnhHVoRLk"
+                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI"
             }
             this.ws.send(params)
 
@@ -1229,7 +1262,9 @@
                 this.ws.close()
             }
         },
-
+        onShow() {
+            this.scrollTop = 9999999;
+        },
         onLoad(info) {
             const query = uni.createSelectorQuery().in(this);
             query.select('.input-box-flex').boundingClientRect(res => {
@@ -1291,9 +1326,7 @@
                 //客服
                 this.getDataList()
                 this.getList(this.jkId)
-                this.$nextTick(() => {
-                    this.scrollTop = 99999999
-                });
+
 
             })
 

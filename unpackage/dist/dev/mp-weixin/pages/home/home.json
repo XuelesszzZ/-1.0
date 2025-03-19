@@ -2,6 +2,7 @@
   "navigationBarTitleText": "微信",
   "navigationStyle": "custom",
   "usingComponents": {
+    "u-modal": "/node-modules/uview-ui/components/u-modal/u-modal",
     "u-navbar": "/node-modules/uview-ui/components/u-navbar/u-navbar",
     "select-input": "/components/selectInput/selectInput",
     "u-swipe-action": "/node-modules/uview-ui/components/u-swipe-action/u-swipe-action",

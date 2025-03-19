@@ -5,6 +5,11 @@ page {
 :root {
     --safe-area-inset-bottom: env(safe-area-inset-bottom);
 }
+.u-toast {
+    text-align: center; /* 确保文字居中 */
+    left: 50%; /* 水平居中 */
+    transform: translateX(-50%); /* 修正偏移 */
+}
 
 .loading {
 	//loading动画

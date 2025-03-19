@@ -100,14 +100,17 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    uModal: function () {
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-modal/u-modal */ "node-modules/uview-ui/components/u-modal/u-modal").then(__webpack_require__.bind(null, /*! uview-ui/components/u-modal/u-modal.vue */ 181))
+    },
     uNavbar: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-navbar/u-navbar */ "node-modules/uview-ui/components/u-navbar/u-navbar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-navbar/u-navbar.vue */ 183))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-navbar/u-navbar */ "node-modules/uview-ui/components/u-navbar/u-navbar").then(__webpack_require__.bind(null, /*! uview-ui/components/u-navbar/u-navbar.vue */ 188))
     },
     selectInput: function () {
-      return __webpack_require__.e(/*! import() | components/selectInput/selectInput */ "components/selectInput/selectInput").then(__webpack_require__.bind(null, /*! @/components/selectInput/selectInput.vue */ 190))
+      return __webpack_require__.e(/*! import() | components/selectInput/selectInput */ "components/selectInput/selectInput").then(__webpack_require__.bind(null, /*! @/components/selectInput/selectInput.vue */ 195))
     },
     uSwipeAction: function () {
-      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-swipe-action/u-swipe-action */ "node-modules/uview-ui/components/u-swipe-action/u-swipe-action").then(__webpack_require__.bind(null, /*! uview-ui/components/u-swipe-action/u-swipe-action.vue */ 197))
+      return __webpack_require__.e(/*! import() | node-modules/uview-ui/components/u-swipe-action/u-swipe-action */ "node-modules/uview-ui/components/u-swipe-action/u-swipe-action").then(__webpack_require__.bind(null, /*! uview-ui/components/u-swipe-action/u-swipe-action.vue */ 202))
     },
   }
 } catch (e) {
@@ -192,12 +195,12 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var searchInput = function searchInput() {
   __webpack_require__.e(/*! require.ensure | components/searchInput/index */ "components/searchInput/index").then((function () {
-    return resolve(__webpack_require__(/*! @/components/searchInput/index.vue */ 204));
+    return resolve(__webpack_require__(/*! @/components/searchInput/index.vue */ 209));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var selectInput = function selectInput() {
   __webpack_require__.e(/*! require.ensure | components/selectInput/selectInput */ "components/selectInput/selectInput").then((function () {
-    return resolve(__webpack_require__(/*! @/components/selectInput/selectInput.vue */ 190));
+    return resolve(__webpack_require__(/*! @/components/selectInput/selectInput.vue */ 195));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {
@@ -207,6 +210,8 @@ var _default = {
   },
   data: function data() {
     return {
+      show: false,
+      content: '是否同意转接客服?',
       list: [{
         final_content: "21",
         final_content_type: 1,
@@ -231,7 +236,7 @@ var _default = {
       ws: null,
       socketList: {
         type: "message_list",
-        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzQ4ODUsImV4cCI6MTc0MzY2Njg4NSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJ1c2VyIiwidXNlcl9pZCI6NDd9fQ.Ave2qlEte478fxGKlAD_Zbicmx-o27HG3LEnhHVoRLk"
+        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI"
       }
     };
   },
@@ -276,9 +281,24 @@ var _default = {
       this.ws.on('error', function (err) {
         return console.error('WebSocket 发生错误:', err);
       });
-      this.ws.on('message', function (data) {
-        _this2.list = _this2.convertTimestampsToDates(data.data.list);
-        _this2.list = JSON.parse(JSON.stringify(_this2.list));
+      this.ws.on('message', function (res) {
+        if (res.type == 'message_list') {
+          _this2.list = _this2.convertTimestampsToDates(res.data.list);
+          console.log(list);
+        }
+        if (res.type == 'switch_cs') {
+          _this2.show = true;
+          _this2.dataSwitch = res.data;
+        }
+      });
+    },
+    confirm: function confirm() {
+      var datas = JSON.stringify(this.dataSwitch);
+      this.$u.route({
+        url: 'pages/chat/chat',
+        params: {
+          data: datas
+        }
       });
     },
     // 转换函数
