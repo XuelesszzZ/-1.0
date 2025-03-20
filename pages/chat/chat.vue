@@ -3,7 +3,9 @@
 
 
         <u-toast ref="uToast" />
-        <view class="content-box" @touchstart="touchstart" id="content-box">
+        <view class="content-box" @touchstart="touchstart" id="content-box" 
+        :style="{ height: `calc(100vh - ${scrollHeight}rpx)` }"
+        >
             <!-- 背景图- 定位方式 -->
             <!-- 	<image class="content-box-bg" :src="_user_info.chatBgImg" :style="{ height: imgHeight }"></image> -->
             <view class="serviceReminder">
@@ -14,7 +16,8 @@
             </view>
             <scroll-view class="msg-list" scroll-y="true" :scroll-with-animation="scrollAnimation"
                 :scroll-top="scrollTop" :scroll-into-view="scrollToView" @scrolltoupper="loadHistory"
-                ref="scrollContainer" upper-threshold="50" @click="scrollBool">
+                ref="scrollContainer" upper-threshold="50" @click="scrollBool"
+               >
                 <!-- 加载历史数据waitingUI -->
                 <view class="loading" v-if="isHistoryLoading">
                     <view class="spinner">
@@ -274,7 +277,7 @@
                 scrollTop: 0,
                 scrollToView: '',
                 windowHeight: 0, // 动态计算高度
-
+                scrollHeight: 0, // 滚动高度
                 swiperIndex: 0, // 初始 swiper 索引
                 csHeiht: null,
                 selectedEmoji: null, // 用于保存用户选择的表情
@@ -320,7 +323,7 @@
                 emogiBox: false, //是否展示表情选择
                 AudioExam: null, //正在播放音频的实例
                 selectedQuickReplyIndex: null,
-                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
+                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzc4MzUsImV4cCI6MTc0MzY2OTgzNSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo4MH19.0VRuivtsilegkdULDdxyraFrpBa2oyqMrThibX6oJzA",
                 comPleteLikst: [],
                 funList: [{
                     icon: "photo-fill",
@@ -373,21 +376,6 @@
                 }
 
             },
-            // emogiBox(val) {
-            //     if (!val) {
-            //         this.updateFooterHeight()
-
-            //     }
-            // },
-            // showFunBtn(val) {
-            //     console.log(val);
-
-            //     if (!val) {
-            //         this.updateFooterHeight()
-
-            //     }
-            // }
-            // 其他监听器...
         },
 
         mounted() {
@@ -414,6 +402,7 @@
                 // 使用 UniApp API 获取节点高度
                 this.$nextTick(() => {
                     const query = uni.createSelectorQuery().in(this);
+
                     query.select('.input-box-flex').boundingClientRect(res => {
                         if (res) {
                             let heightInPx = res.height;
@@ -431,11 +420,19 @@
                             }
 
 
+
+
                         }
                     }).exec();
                     this.$nextTick(function () {
+                        this.scrollHeight = this.dynamicFooterHeight + this.safeAreaInsetBottom
+               
+                        
                         // 滚动到底
-                        this.scrollToView = 'msg-0';
+                        this.scrollTop = 999999;
+                        this.$nextTick(function () {
+                            this.scrollAnimation = true;
+                        });
                     });
 
                 });
@@ -574,7 +571,7 @@
                 }
                 this.$nextTick(function () {
                     // 滚动到底
-                    this.scrollToView = 'msg-0';
+                    this.scrollTop = 999999;;
                 });
             },
             del() {
@@ -732,7 +729,7 @@
                         this.messageList.push(res.data)
                         this.$nextTick(function () {
                             // 滚动到底
-                            this.scrollToView = 'msg-0';
+                            this.scrollTop = 999999;;
                         });
                     }
                     if (res.type == 'login') {
@@ -757,14 +754,7 @@
 
                     }
 
-                    this.$nextTick(function () {
-                        //进入页面滚动到底部
-                        this.scrollTop = 9999;
-                        this.$nextTick(function () {
-                            this.scrollAnimation = true;
-                        });
 
-                    });
 
                 });
             },
@@ -815,21 +805,23 @@
             emogiFun() {
                 this.chatType = 'voice'
                 this.emogiBox = !this.emogiBox;
-                
+
                 this.showFunBtn = false;
                 this.showQuickReply = false;
 
                 uni.hideKeyboard();
 
-              
-                if( this.emogiBox){
+
+                if (this.emogiBox) {
                     this.updateFooterHeight(300)
-                }else{
+                } else {
+
+
                     this.updateFooterHeight()
                 }
                 this.$nextTick(function () {
                     // 滚动到底
-                    this.scrollToView = 'msg-0';
+                    this.scrollTop = 999999;;
                 });
 
             },
@@ -838,9 +830,9 @@
 
                 this.chatType = 'voice'
                 this.showFunBtn = !this.showFunBtn;
-                if( this.showFunBtn){
+                if (this.showFunBtn) {
                     this.updateFooterHeight(300)
-                }else{
+                } else {
                     this.updateFooterHeight()
                 }
                 this.emogiBox = false
@@ -938,11 +930,11 @@
                     this.formData.content = '';
                     // #ifdef MP-WEIXIN
 
-                    this.scrollToView = 'msg-0'
+                    this.scrollTop = 999999;
                     // #endif
 
                     // #ifndef MP-WEIXIN
-                    this.scrollToView = 'msg-0'
+                    this.scrollTop = 999999;
                     // #endif
 
                     if (this.showFunBtn) {
@@ -1279,12 +1271,7 @@
                 this.ws.close()
             }
         },
-        onShow() {
 
-            this.$nextTick(function () {
-                this.scrollTop = 9999999;
-            });
-        },
         onLoad(info) {
             const query = uni.createSelectorQuery().in(this);
             query.select('.input-box-flex').boundingClientRect(res => {
@@ -1303,7 +1290,7 @@
                     console.log('Safe Area Inset Bottom:', safeAreaInsetBottom);
 
                     // 在这里可以使用 safeAreaInsetBottom 的值
-                    this.safeAreaInsetBottom = safeAreaInsetBottom;
+                    this.safeAreaInsetBottom = this.px2rpx(safeAreaInsetBottom);
 
                 }
             });
@@ -1337,12 +1324,13 @@
             }
 
             this.infoData = infoData; // 赋值 infoData
-
+            this.updateFooterHeight();
             this.init(params)
             this.$nextTick(() => {
 
-                //进入页面滚动到底部
-                this.updateFooterHeight();
+
+
+
                 //客服
                 this.getDataList()
                 this.getList(this.jkId)

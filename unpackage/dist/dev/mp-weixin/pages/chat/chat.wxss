@@ -164,6 +164,7 @@ page.data-v-bf16e7f4 {
 .content-box .msg-list.data-v-bf16e7f4 {
   width: 100%;
   flex: 1;
+  background-color: saddlebrown;
   overflow-y: scroll;
   /* 确保 msg-list 可以滚动 */
   padding-bottom: 20rpx;
@@ -175,6 +176,7 @@ page.data-v-bf16e7f4 {
   color: #999;
 }
 .content-box .kjBox.data-v-bf16e7f4 {
+  height: 60rpx;
   width: 100%;
   display: flex;
   align-items: center;

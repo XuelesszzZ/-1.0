@@ -245,7 +245,8 @@ var _default = {
       scrollToView: '',
       windowHeight: 0,
       // 动态计算高度
-
+      scrollHeight: 0,
+      // 滚动高度
       swiperIndex: 0,
       // 初始 swiper 索引
       csHeiht: null,
@@ -273,7 +274,7 @@ var _default = {
       infoLeft: {},
       kfTitle: '',
       safeAreaInsetBottom: null
-    }, (0, _defineProperty2.default)(_ref, "loading", true), (0, _defineProperty2.default)(_ref, "imgHeight", '1000px'), (0, _defineProperty2.default)(_ref, "mpInputMargin", false), (0, _defineProperty2.default)(_ref, "chatType", "voice"), (0, _defineProperty2.default)(_ref, "voiceTitle", '按住 说话'), (0, _defineProperty2.default)(_ref, "commonList", []), (0, _defineProperty2.default)(_ref, "throttleTimeout", null), (0, _defineProperty2.default)(_ref, "Recorder", uni.getRecorderManager()), (0, _defineProperty2.default)(_ref, "Audio", uni.createInnerAudioContext()), (0, _defineProperty2.default)(_ref, "recording", false), (0, _defineProperty2.default)(_ref, "isStopVoice", false), (0, _defineProperty2.default)(_ref, "voiceInterval", null), (0, _defineProperty2.default)(_ref, "voiceTime", 0), (0, _defineProperty2.default)(_ref, "canSend", true), (0, _defineProperty2.default)(_ref, "PointY", 0), (0, _defineProperty2.default)(_ref, "voiceIconText", "正在录音..."), (0, _defineProperty2.default)(_ref, "showFunBtn", false), (0, _defineProperty2.default)(_ref, "emogiBox", false), (0, _defineProperty2.default)(_ref, "AudioExam", null), (0, _defineProperty2.default)(_ref, "selectedQuickReplyIndex", null), (0, _defineProperty2.default)(_ref, "token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI"), (0, _defineProperty2.default)(_ref, "comPleteLikst", []), (0, _defineProperty2.default)(_ref, "funList", [{
+    }, (0, _defineProperty2.default)(_ref, "loading", true), (0, _defineProperty2.default)(_ref, "imgHeight", '1000px'), (0, _defineProperty2.default)(_ref, "mpInputMargin", false), (0, _defineProperty2.default)(_ref, "chatType", "voice"), (0, _defineProperty2.default)(_ref, "voiceTitle", '按住 说话'), (0, _defineProperty2.default)(_ref, "commonList", []), (0, _defineProperty2.default)(_ref, "throttleTimeout", null), (0, _defineProperty2.default)(_ref, "Recorder", uni.getRecorderManager()), (0, _defineProperty2.default)(_ref, "Audio", uni.createInnerAudioContext()), (0, _defineProperty2.default)(_ref, "recording", false), (0, _defineProperty2.default)(_ref, "isStopVoice", false), (0, _defineProperty2.default)(_ref, "voiceInterval", null), (0, _defineProperty2.default)(_ref, "voiceTime", 0), (0, _defineProperty2.default)(_ref, "canSend", true), (0, _defineProperty2.default)(_ref, "PointY", 0), (0, _defineProperty2.default)(_ref, "voiceIconText", "正在录音..."), (0, _defineProperty2.default)(_ref, "showFunBtn", false), (0, _defineProperty2.default)(_ref, "emogiBox", false), (0, _defineProperty2.default)(_ref, "AudioExam", null), (0, _defineProperty2.default)(_ref, "selectedQuickReplyIndex", null), (0, _defineProperty2.default)(_ref, "token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzc4MzUsImV4cCI6MTc0MzY2OTgzNSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo4MH19.0VRuivtsilegkdULDdxyraFrpBa2oyqMrThibX6oJzA"), (0, _defineProperty2.default)(_ref, "comPleteLikst", []), (0, _defineProperty2.default)(_ref, "funList", [{
       icon: "photo-fill",
       title: "照片",
       uploadType: ["album"]
@@ -306,18 +307,7 @@ var _default = {
       if (!val) {
         this.updateFooterHeight();
       }
-    } // emogiBox(val) {
-    //     if (!val) {
-    //         this.updateFooterHeight()
-    //     }
-    // },
-    // showFunBtn(val) {
-    //     console.log(val);
-    //     if (!val) {
-    //         this.updateFooterHeight()
-    //     }
-    // }
-    // 其他监听器...
+    }
   },
   mounted: function mounted() {},
   methods: {
@@ -345,8 +335,13 @@ var _default = {
           }
         }).exec();
         _this.$nextTick(function () {
+          this.scrollHeight = this.dynamicFooterHeight + this.safeAreaInsetBottom;
+
           // 滚动到底
-          this.scrollToView = 'msg-0';
+          this.scrollTop = 999999;
+          this.$nextTick(function () {
+            this.scrollAnimation = true;
+          });
         });
       });
     },
@@ -464,7 +459,8 @@ var _default = {
 
       this.$nextTick(function () {
         // 滚动到底
-        this.scrollToView = 'msg-0';
+        this.scrollTop = 999999;
+        ;
       });
     },
     del: function del() {
@@ -608,7 +604,8 @@ var _default = {
           _this8.messageList.push(res.data);
           _this8.$nextTick(function () {
             // 滚动到底
-            this.scrollToView = 'msg-0';
+            this.scrollTop = 999999;
+            ;
           });
         }
         if (res.type == 'login') {
@@ -624,13 +621,6 @@ var _default = {
             }
           });
         }
-        _this8.$nextTick(function () {
-          //进入页面滚动到底部
-          this.scrollTop = 9999;
-          this.$nextTick(function () {
-            this.scrollAnimation = true;
-          });
-        });
       });
     },
     //客服
@@ -678,7 +668,8 @@ var _default = {
       }
       this.$nextTick(function () {
         // 滚动到底
-        this.scrollToView = 'msg-0';
+        this.scrollTop = 999999;
+        ;
       });
     },
     //切换功能性按钮
@@ -762,7 +753,7 @@ var _default = {
       this.$nextTick(function () {
         // this.dynamicFooterHeight = this.csHeiht
         _this10.formData.content = '';
-        _this10.scrollToView = 'msg-0';
+        _this10.scrollTop = 999999;
         if (_this10.showFunBtn) {
           _this10.showFunBtn = false;
         }
@@ -1075,11 +1066,6 @@ var _default = {
       this.ws.close();
     }
   },
-  onShow: function onShow() {
-    this.$nextTick(function () {
-      this.scrollTop = 9999999;
-    });
-  },
   onLoad: function onLoad(info) {
     var _this16 = this;
     var query = uni.createSelectorQuery().in(this);
@@ -1096,7 +1082,7 @@ var _default = {
         console.log('Safe Area Inset Bottom:', safeAreaInsetBottom);
 
         // 在这里可以使用 safeAreaInsetBottom 的值
-        _this16.safeAreaInsetBottom = safeAreaInsetBottom;
+        _this16.safeAreaInsetBottom = _this16.px2rpx(safeAreaInsetBottom);
       }
     });
     var infoData = JSON.parse(info.data);
@@ -1120,11 +1106,9 @@ var _default = {
       this.hosId = infoData.user_id;
     }
     this.infoData = infoData; // 赋值 infoData
-
+    this.updateFooterHeight();
     this.init(params);
     this.$nextTick(function () {
-      //进入页面滚动到底部
-      _this16.updateFooterHeight();
       //客服
       _this16.getDataList();
       _this16.getList(_this16.jkId);

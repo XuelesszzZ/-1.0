@@ -144,6 +144,7 @@ page {
 		.msg-list {
 			width: 100%;
 			flex: 1;
+			background-color: saddlebrown;
 			overflow-y: scroll;
 			/* 确保 msg-list 可以滚动 */
 			padding-bottom: 20rpx;
@@ -159,7 +160,7 @@ page {
 		}
 
 		.kjBox {
-			// height: 60rpx;
+			height: 60rpx;
 
 			width: 100%;
 			display: flex;
