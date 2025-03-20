@@ -5,6 +5,7 @@
     "versionName": "1.0.0",
     "versionCode": "100",
     "transformPx": false,
+
     /* 5+App特有相关 */
     "app-plus": {
         "usingComponents": true,
@@ -65,6 +66,7 @@
     /* 小程序特有相关 */
     "mp-weixin": {
         "appid": "wx0eb5896df9e4057a",
+        
         "setting": {
             "urlCheck": false,
             "es6": true,
@@ -80,6 +82,7 @@
                 "desc": "你的位置信息将用于小程序位置接口的效果展示"
             }
         }
+        
     },
     "mp-alipay": {
         "usingComponents": true

@@ -527,7 +527,7 @@ page.data-v-bf16e7f4 {
   background-color: #fff;
   border-radius: 12rpx;
   width: 95%;
-  padding: 6rpx;
+  padding: 0 6rpx;
 }
 .content .input-box-flex-grow .voice_title.data-v-bf16e7f4 {
   text-align: center;

@@ -204,27 +204,27 @@ var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 var _env = __webpack_require__(/*! ../../env */ 67);
 var _socket = _interopRequireDefault(__webpack_require__(/*! @/socket.js */ 77));
 var _index = __webpack_require__(/*! @/filter/index.js */ 70);
-var _emojData = __webpack_require__(/*! @/utils/emojData.js */ 377);
+var _emojData = __webpack_require__(/*! @/utils/emojData.js */ 120);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var OrderPopup = function OrderPopup() {
   __webpack_require__.e(/*! require.ensure | components/popup */ "components/popup").then((function () {
-    return resolve(__webpack_require__(/*! @/components/popup.vue */ 378));
+    return resolve(__webpack_require__(/*! @/components/popup.vue */ 300));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var customer = function customer() {
   __webpack_require__.e(/*! require.ensure | components/customer */ "components/customer").then((function () {
-    return resolve(__webpack_require__(/*! @/components/customer.vue */ 386));
+    return resolve(__webpack_require__(/*! @/components/customer.vue */ 307));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var QuickReply = function QuickReply() {
   __webpack_require__.e(/*! require.ensure | components/QuickReply */ "components/QuickReply").then((function () {
-    return resolve(__webpack_require__(/*! @/components/QuickReply.vue */ 394));
+    return resolve(__webpack_require__(/*! @/components/QuickReply.vue */ 314));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var AutoComplete = function AutoComplete() {
   __webpack_require__.e(/*! require.ensure | components/AutoComplete */ "components/AutoComplete").then((function () {
-    return resolve(__webpack_require__(/*! @/components/AutoComplete.vue */ 402));
+    return resolve(__webpack_require__(/*! @/components/AutoComplete.vue */ 321));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {

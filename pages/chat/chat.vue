@@ -1263,7 +1263,7 @@
             }
         },
         onShow() {
-        
+
             this.$nextTick(function () {
                 this.scrollTop = 9999999;
             });

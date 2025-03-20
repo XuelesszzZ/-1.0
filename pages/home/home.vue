@@ -30,7 +30,9 @@
 				<view class="right u-border-bottom title-wrap">
 					<view class="right_top">
 						<view class="right_top_name u-line-1" v-if="item.room_type == 1 ">{{ item.title }}</view>
-						<view class="right_top_name u-line-1" v-if="item.room_type == 2 || item.room_type == 3">系统客服
+						<view class="right_top_name u-line-1" v-else-if="item.room_type == 2 || item.room_type == 3">系统客服
+						</view>
+						<view class="right_top_name u-line-1" v-else>{{ item.title }}
 						</view>
 						<view class="right_top_time ">{{ item.final_time }}</view>
 					</view>
