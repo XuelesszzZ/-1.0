@@ -236,7 +236,7 @@ var _default = {
       ws: null,
       socketList: {
         type: "message_list",
-        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI"
+        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzQ4ODUsImV4cCI6MTc0MzY2Njg4NSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJ1c2VyIiwidXNlcl9pZCI6NDd9fQ.Ave2qlEte478fxGKlAD_Zbicmx-o27HG3LEnhHVoRLk"
       }
     };
   },
@@ -282,6 +282,7 @@ var _default = {
         return console.error('WebSocket 发生错误:', err);
       });
       this.ws.on('message', function (res) {
+        console.log(res);
         if (res.type == 'message_list') {
           _this2.list = _this2.convertTimestampsToDates(res.data.list);
           console.log(list);

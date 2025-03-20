@@ -323,7 +323,7 @@
                 emogiBox: false, //是否展示表情选择
                 AudioExam: null, //正在播放音频的实例
                 selectedQuickReplyIndex: null,
-                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzc4MzUsImV4cCI6MTc0MzY2OTgzNSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo4MH19.0VRuivtsilegkdULDdxyraFrpBa2oyqMrThibX6oJzA",
+                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzQ4ODUsImV4cCI6MTc0MzY2Njg4NSwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJ1c2VyIiwidXNlcl9pZCI6NDd9fQ.Ave2qlEte478fxGKlAD_Zbicmx-o27HG3LEnhHVoRLk",
                 comPleteLikst: [],
                 funList: [{
                     icon: "photo-fill",
@@ -1324,8 +1324,9 @@
             }
 
             this.infoData = infoData; // 赋值 infoData
-            this.updateFooterHeight();
+          
             this.init(params)
+            this.updateFooterHeight();
             this.$nextTick(() => {
 
 
