@@ -204,27 +204,27 @@ var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/run
 var _env = __webpack_require__(/*! ../../env */ 67);
 var _socket = _interopRequireDefault(__webpack_require__(/*! @/socket.js */ 77));
 var _index = __webpack_require__(/*! @/filter/index.js */ 70);
-var _emojData = __webpack_require__(/*! @/utils/emojData.js */ 120);
+var _emojData = __webpack_require__(/*! @/utils/emojData.js */ 377);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { (0, _defineProperty2.default)(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 var OrderPopup = function OrderPopup() {
   __webpack_require__.e(/*! require.ensure | components/popup */ "components/popup").then((function () {
-    return resolve(__webpack_require__(/*! @/components/popup.vue */ 300));
+    return resolve(__webpack_require__(/*! @/components/popup.vue */ 378));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var customer = function customer() {
   __webpack_require__.e(/*! require.ensure | components/customer */ "components/customer").then((function () {
-    return resolve(__webpack_require__(/*! @/components/customer.vue */ 307));
+    return resolve(__webpack_require__(/*! @/components/customer.vue */ 386));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var QuickReply = function QuickReply() {
   __webpack_require__.e(/*! require.ensure | components/QuickReply */ "components/QuickReply").then((function () {
-    return resolve(__webpack_require__(/*! @/components/QuickReply.vue */ 314));
+    return resolve(__webpack_require__(/*! @/components/QuickReply.vue */ 394));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var AutoComplete = function AutoComplete() {
   __webpack_require__.e(/*! require.ensure | components/AutoComplete */ "components/AutoComplete").then((function () {
-    return resolve(__webpack_require__(/*! @/components/AutoComplete.vue */ 321));
+    return resolve(__webpack_require__(/*! @/components/AutoComplete.vue */ 402));
   }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
 };
 var _default = {
@@ -273,7 +273,7 @@ var _default = {
       infoLeft: {},
       kfTitle: '',
       safeAreaInsetBottom: null
-    }, (0, _defineProperty2.default)(_ref, "loading", true), (0, _defineProperty2.default)(_ref, "imgHeight", '1000px'), (0, _defineProperty2.default)(_ref, "mpInputMargin", false), (0, _defineProperty2.default)(_ref, "chatType", "voice"), (0, _defineProperty2.default)(_ref, "voiceTitle", '按住 说话'), (0, _defineProperty2.default)(_ref, "commonList", []), (0, _defineProperty2.default)(_ref, "throttleTimeout", null), (0, _defineProperty2.default)(_ref, "Recorder", uni.getRecorderManager()), (0, _defineProperty2.default)(_ref, "Audio", uni.createInnerAudioContext()), (0, _defineProperty2.default)(_ref, "recording", false), (0, _defineProperty2.default)(_ref, "isStopVoice", false), (0, _defineProperty2.default)(_ref, "voiceInterval", null), (0, _defineProperty2.default)(_ref, "voiceTime", 0), (0, _defineProperty2.default)(_ref, "canSend", true), (0, _defineProperty2.default)(_ref, "PointY", 0), (0, _defineProperty2.default)(_ref, "voiceIconText", "正在录音..."), (0, _defineProperty2.default)(_ref, "showFunBtn", false), (0, _defineProperty2.default)(_ref, "emogiBox", false), (0, _defineProperty2.default)(_ref, "AudioExam", null), (0, _defineProperty2.default)(_ref, "selectedQuickReplyIndex", null), (0, _defineProperty2.default)(_ref, "comPleteLikst", []), (0, _defineProperty2.default)(_ref, "funList", [{
+    }, (0, _defineProperty2.default)(_ref, "loading", true), (0, _defineProperty2.default)(_ref, "imgHeight", '1000px'), (0, _defineProperty2.default)(_ref, "mpInputMargin", false), (0, _defineProperty2.default)(_ref, "chatType", "voice"), (0, _defineProperty2.default)(_ref, "voiceTitle", '按住 说话'), (0, _defineProperty2.default)(_ref, "commonList", []), (0, _defineProperty2.default)(_ref, "throttleTimeout", null), (0, _defineProperty2.default)(_ref, "Recorder", uni.getRecorderManager()), (0, _defineProperty2.default)(_ref, "Audio", uni.createInnerAudioContext()), (0, _defineProperty2.default)(_ref, "recording", false), (0, _defineProperty2.default)(_ref, "isStopVoice", false), (0, _defineProperty2.default)(_ref, "voiceInterval", null), (0, _defineProperty2.default)(_ref, "voiceTime", 0), (0, _defineProperty2.default)(_ref, "canSend", true), (0, _defineProperty2.default)(_ref, "PointY", 0), (0, _defineProperty2.default)(_ref, "voiceIconText", "正在录音..."), (0, _defineProperty2.default)(_ref, "showFunBtn", false), (0, _defineProperty2.default)(_ref, "emogiBox", false), (0, _defineProperty2.default)(_ref, "AudioExam", null), (0, _defineProperty2.default)(_ref, "selectedQuickReplyIndex", null), (0, _defineProperty2.default)(_ref, "token", "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI"), (0, _defineProperty2.default)(_ref, "comPleteLikst", []), (0, _defineProperty2.default)(_ref, "funList", [{
       icon: "photo-fill",
       title: "照片",
       uploadType: ["album"]
@@ -524,7 +524,7 @@ var _default = {
       console.log(item);
       this.kfTitle = item.name;
       var params = {
-        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
+        token: this.token,
         type: "switch_cs",
         room_type: this.hosType,
         cs_uid: item.cs_uid
@@ -635,7 +635,7 @@ var _default = {
     //客服
     getDataList: function getDataList() {
       var params = {
-        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
+        token: this.token,
         type: "cs_list",
         room_type: this.hosType
       };
@@ -695,7 +695,7 @@ var _default = {
     sendMsg: function sendMsg(data) {
       var _this10 = this;
       var sedData = {
-        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
+        token: this.token,
         type: 'dialog',
         shop_id: null,
         user_id: null,
@@ -899,7 +899,7 @@ var _default = {
         this.popTile = '发送商品';
       } else if (index == 4) {
         var parmas = {
-          token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
+          token: this.token,
           type: "cs_list",
           room_type: this.hosType
         };
@@ -1058,7 +1058,7 @@ var _default = {
     var params = {
       room_type: this.roomType,
       type: "logout",
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI"
+      token: this.token
     };
     this.ws.send(params);
     if (this.ws) {
@@ -1097,7 +1097,7 @@ var _default = {
       shop_id: infoData.shop_id,
       room_type: infoData.room_type,
       type: "login",
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI"
+      token: this.token
     };
     this.hosType = infoData.room_type;
     if (infoData.room_type === 1 || infoData.room_type === 2 || infoData.room_type === 3) {

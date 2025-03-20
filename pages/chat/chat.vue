@@ -321,7 +321,7 @@
                 emogiBox: false, //是否展示表情选择
                 AudioExam: null, //正在播放音频的实例
                 selectedQuickReplyIndex: null,
-
+                token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
                 comPleteLikst: [],
                 funList: [{
                     icon: "photo-fill",
@@ -635,7 +635,7 @@
                 console.log(item);
                 this.kfTitle = item.name
                 const params = {
-                    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
+                    token: this.token,
                     type: "switch_cs",
                     room_type: this.hosType,
                     cs_uid: item.cs_uid
@@ -766,7 +766,7 @@
             //客服
             getDataList() {
                 const params = {
-                    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
+                    token: this.token,
                     type: "cs_list",
                     room_type: this.hosType,
 
@@ -845,7 +845,7 @@
             sendMsg(data) {
 
                 const sedData = {
-                    token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
+                    token: this.token,
                     type: 'dialog',
                     shop_id: null,
                     user_id: null,
@@ -1096,7 +1096,7 @@
                     this.popTile = '发送商品'
                 } else if (index == 4) {
                     let parmas = {
-                        token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
+                        token: this.token,
                         type: "cs_list",
                         room_type: this.hosType
                     }
@@ -1254,7 +1254,7 @@
             const params = {
                 room_type: this.roomType,
                 type: "logout",
-                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI"
+                token: this.token
             }
             this.ws.send(params)
 
@@ -1303,7 +1303,7 @@
                 shop_id: infoData.shop_id,
                 room_type: infoData.room_type,
                 type: "login",
-                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI"
+                token: this.token
             }
 
             this.hosType = infoData.room_type
