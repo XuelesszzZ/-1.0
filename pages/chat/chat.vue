@@ -321,7 +321,7 @@
                 emogiBox: false, //是否展示表情选择
                 AudioExam: null, //正在播放音频的实例
                 selectedQuickReplyIndex: null,
-                token:"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
+                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3NDEwNzY3NjIsImV4cCI6MTc0MzY2ODc2MiwiZGF0YSI6eyJ1c2VyX3R5cGUiOiJzaG9wIiwic2hvcF9pZCI6MTUsInNob3BfdWlkIjo3Nn19.vAcvBN_W46zBRXoDpT1wtERtC3wBJPC7rdhAc79hJuI",
                 comPleteLikst: [],
                 funList: [{
                     icon: "photo-fill",
@@ -1263,7 +1263,10 @@
             }
         },
         onShow() {
-            this.scrollTop = 9999999;
+        
+            this.$nextTick(function () {
+                this.scrollTop = 9999999;
+            });
         },
         onLoad(info) {
             const query = uni.createSelectorQuery().in(this);

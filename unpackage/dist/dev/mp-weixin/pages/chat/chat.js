@@ -1066,7 +1066,9 @@ var _default = {
     }
   },
   onShow: function onShow() {
-    this.scrollTop = 9999999;
+    this.$nextTick(function () {
+      this.scrollTop = 9999999;
+    });
   },
   onLoad: function onLoad(info) {
     var _this16 = this;
