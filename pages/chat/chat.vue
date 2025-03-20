@@ -3,8 +3,7 @@
 
 
         <u-toast ref="uToast" />
-        <view class="content-box" @touchstart="touchstart" id="content-box"
-            :class="{'emoji-active':showFunBtn, 'emoji-active': emogiBox, 'showQuickReply-active': showQuickReply}">
+        <view class="content-box" @touchstart="touchstart" id="content-box">
             <!-- 背景图- 定位方式 -->
             <!-- 	<image class="content-box-bg" :src="_user_info.chatBgImg" :style="{ height: imgHeight }"></image> -->
             <view class="serviceReminder">
@@ -374,18 +373,20 @@
                 }
 
             },
-            emogiBox(val) {
-                if (!val) {
-                    this.updateFooterHeight()
+            // emogiBox(val) {
+            //     if (!val) {
+            //         this.updateFooterHeight()
 
-                }
-            },
-            showFunBtn(val) {
-                if (!val) {
-                    this.updateFooterHeight()
+            //     }
+            // },
+            // showFunBtn(val) {
+            //     console.log(val);
 
-                }
-            }
+            //     if (!val) {
+            //         this.updateFooterHeight()
+
+            //     }
+            // }
             // 其他监听器...
         },
 
@@ -418,7 +419,11 @@
                             let heightInPx = res.height;
                             let heightInRpx = this.px2rpx(heightInPx);
                             if (num) {
+
+
                                 this.dynamicFooterHeight = heightInRpx + num;
+
+
 
 
                             } else {
@@ -810,12 +815,18 @@
             emogiFun() {
                 this.chatType = 'voice'
                 this.emogiBox = !this.emogiBox;
+                
                 this.showFunBtn = false;
                 this.showQuickReply = false;
 
                 uni.hideKeyboard();
 
-                this.updateFooterHeight(300)
+              
+                if( this.emogiBox){
+                    this.updateFooterHeight(300)
+                }else{
+                    this.updateFooterHeight()
+                }
                 this.$nextTick(function () {
                     // 滚动到底
                     this.scrollToView = 'msg-0';
@@ -824,9 +835,14 @@
             },
             //切换功能性按钮
             switchFun() {
-                this.updateFooterHeight(300)
+
                 this.chatType = 'voice'
                 this.showFunBtn = !this.showFunBtn;
+                if( this.showFunBtn){
+                    this.updateFooterHeight(300)
+                }else{
+                    this.updateFooterHeight()
+                }
                 this.emogiBox = false
                 this.showQuickReply = false;
                 uni.hideKeyboard()
@@ -949,6 +965,7 @@
             //用户触摸屏幕的时候隐藏键盘
             touchstart() {
                 uni.hideKeyboard();
+                this.updateFooterHeight();
                 this.showFunBtn = false
                 this.emogiBox = false
                 this.selectedQuickReplyIndex = null

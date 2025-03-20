@@ -306,17 +306,18 @@ var _default = {
       if (!val) {
         this.updateFooterHeight();
       }
-    },
-    emogiBox: function emogiBox(val) {
-      if (!val) {
-        this.updateFooterHeight();
-      }
-    },
-    showFunBtn: function showFunBtn(val) {
-      if (!val) {
-        this.updateFooterHeight();
-      }
-    } // 其他监听器...
+    } // emogiBox(val) {
+    //     if (!val) {
+    //         this.updateFooterHeight()
+    //     }
+    // },
+    // showFunBtn(val) {
+    //     console.log(val);
+    //     if (!val) {
+    //         this.updateFooterHeight()
+    //     }
+    // }
+    // 其他监听器...
   },
   mounted: function mounted() {},
   methods: {
@@ -670,7 +671,11 @@ var _default = {
       this.showFunBtn = false;
       this.showQuickReply = false;
       uni.hideKeyboard();
-      this.updateFooterHeight(300);
+      if (this.emogiBox) {
+        this.updateFooterHeight(300);
+      } else {
+        this.updateFooterHeight();
+      }
       this.$nextTick(function () {
         // 滚动到底
         this.scrollToView = 'msg-0';
@@ -678,9 +683,13 @@ var _default = {
     },
     //切换功能性按钮
     switchFun: function switchFun() {
-      this.updateFooterHeight(300);
       this.chatType = 'voice';
       this.showFunBtn = !this.showFunBtn;
+      if (this.showFunBtn) {
+        this.updateFooterHeight(300);
+      } else {
+        this.updateFooterHeight();
+      }
       this.emogiBox = false;
       this.showQuickReply = false;
       uni.hideKeyboard();
@@ -767,6 +776,7 @@ var _default = {
     //用户触摸屏幕的时候隐藏键盘
     touchstart: function touchstart() {
       uni.hideKeyboard();
+      this.updateFooterHeight();
       this.showFunBtn = false;
       this.emogiBox = false;
       this.selectedQuickReplyIndex = null;

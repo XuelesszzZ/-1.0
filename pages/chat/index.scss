@@ -105,8 +105,6 @@ page {
 
 	.emoji-active {
 		height: calc(100vh - env(safe-area-inset-top) - 499rpx);
-
-		// padding-bottom: calc(420rpx + env(safe-area-inset-bottom));
 	}
 
 	.showQuickReply-active {
@@ -132,8 +130,8 @@ page {
 
 	&-box {
 		width: 100%;
-		// height: calc(100vh - 195rpx);
 		flex: 1;
+
 		box-sizing: content-box;
 		display: flex;
 		flex-direction: column;
@@ -141,6 +139,7 @@ page {
 		background-color: rgba(239, 239, 239, 1);
 		padding-bottom: 0 !important;
 		overflow: hidden;
+		position: relative;
 
 		.msg-list {
 			width: 100%;
@@ -148,6 +147,8 @@ page {
 			overflow-y: scroll;
 			/* 确保 msg-list 可以滚动 */
 			padding-bottom: 20rpx;
+
+
 
 			.timeBox {
 				text-align: center;
@@ -159,6 +160,7 @@ page {
 
 		.kjBox {
 			// height: 60rpx;
+
 			width: 100%;
 			display: flex;
 			align-items: center;
@@ -630,13 +632,13 @@ page {
 					// height: 80rpx;
 					border-radius: 12rpx;
 					width: 95%;
-					padding:0 6rpx;
-					 // box-sizing: border-box;
-						// background-color: #fff;
-						// // height: 60rpx	!important;
-						// padding: 0 20rpx;
-						// border-radius: 12rpx;
-						// font-size: 28rpx;
+					padding: 0 6rpx;
+					// box-sizing: border-box;
+					// background-color: #fff;
+					// // height: 60rpx	!important;
+					// padding: 0 20rpx;
+					// border-radius: 12rpx;
+					// font-size: 28rpx;
 
 
 				}
